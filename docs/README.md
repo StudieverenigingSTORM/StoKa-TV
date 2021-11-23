@@ -2,4 +2,7 @@
 Promotional display in the StoKa.
 
 ## Project structure
-* `/docs` [Documentation](./general.md)
+* `/docs` Documentation
+
+## General
+General information about the project are documented [here](./general.md).
