@@ -8,8 +8,8 @@ date: December 11, 2021
 
 ------------------
 
-Too bad [...] that sh*t is my jam  
-    - Ruben
+<em>Too bad [...] that sh*t is my jam  
+    - Ruben</em>
 
 ------------------
 
@@ -31,7 +31,7 @@ Tizen Web Application
 ## Containerized
 Docker & Docker Compose
 
-("Idk... it works on my machine")
+<em>"Idk... it works on my machine"</em>
 
 ## MERN stack
 
@@ -42,9 +42,9 @@ Docker & Docker Compose
 
 ------------------
 
-Oh, yeah... and Typescript
+<del>Oh, yeah... and Typescript
 
-(Because JavaScript sucks)
+(Because JavaScript sucks)</del>
 
 # Next steps
 
@@ -58,4 +58,4 @@ Oh, yeah... and Typescript
 # FIN
 
 ##
-(These memes will age like milk)
+(The memes were kinda cringe)
