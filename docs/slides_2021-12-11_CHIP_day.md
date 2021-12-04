@@ -31,16 +31,19 @@ Tizen Web Application
 ## Containerized
 Docker & Docker Compose
 
+("Idk... it works on my machine")
+
 ## MERN stack
 
-- MongoDB
+- A MongoDB (sus)
 - Express
 - React
 - Node
 
 ------------------
 
-Oh, yeah... and Typescript  
+Oh, yeah... and Typescript
+
 (Because JavaScript sucks)
 
 # Next steps
@@ -49,5 +52,10 @@ Oh, yeah... and Typescript
 
 - Build an API
 - Build a basic CMS
+- ???
+- Profit
 
 # FIN
+
+##
+(These memes will age like milk)
