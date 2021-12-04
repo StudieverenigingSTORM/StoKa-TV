@@ -18,3 +18,7 @@ This application is also available in the browser to preview7review the content.
 The content management system is a private application for authorized users only. It is used to author (**C**reate/**R**ead/**U**pdate/**D**elete) the content that is displayed in the TV application.
 
 ![Use-case Content Management System application](./use-case_cms.drawio.svg)
+
+## Slides
+Use the following command to build HTML slides with [pandoc](https://pandoc.org/):  
+```pandoc -t revealjs -s <path/to/slides.md> -o <path/to/slides.html>```
