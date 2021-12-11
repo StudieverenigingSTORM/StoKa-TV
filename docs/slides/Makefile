@@ -4,7 +4,7 @@ error:
 	@echo "Use \`make slides' to build HTML files for slides"
 	@exit 1
 
-slides_in  := $(wildcard slides/*.txt)
+slides_in  := $(wildcard *.txt)
 slides_out  := $(slides_in:.txt=.html)
 
 %.html: %.txt

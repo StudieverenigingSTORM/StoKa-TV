@@ -17,10 +17,8 @@ This application is also available in the browser to preview7review the content.
 
 ![Flowchart TV application](./flow_tv.drawio.svg)
 
-### Content Management System (CMS)
-The content management system is a private application for authorized users only. It is used to author (**C**reate/**R**ead/**U**pdate/**D**elete) the content that is displayed in the TV application.
-
-![Use-case Content Management System application](./use-case_cms.drawio.svg)
+### Content Management
+![Use-case Content Management](./use-case_cms.drawio.svg)
 
 ## Prerequisites
 + [GNU Make](https://www.gnu.org/software/make/)
