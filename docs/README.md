@@ -1,14 +1,33 @@
 # StoKa-TV
 Promotional display in the StoKa.
 
-## Project structure
-+ `/docs` Documentation including [general information about the project](./general.md) and slides.
+## General
+This document contains general documentation, such as diagrams, about this project.
 
-## Slides
-Use `cd docs && make slides` to generate/update the HTML slides. (Requires [pandoc 2.x](https://pandoc.org/))
+### System overview
+Concept for the deployment of the different components of the solution. (Different deployments may be possible)
 
-+ [2021-12-11: CHIP day progress presentation](https://raw.githack.com/StudieverenigingSTORM/StoKa-TV/main/docs/slides_2021-12-11_CHIP_day.html)
+![System overview](./system_overview.drawio.svg)
+
+### TV application
+The TV application constitutes the public part of the solution.
+It has limited interactivity.
+Content cannot be authored through this application.
+This application is also available in the browser to preview7review the content.
+
+![Flowchart TV application](./flow_tv.drawio.svg)
+
+### Content Management System (CMS)
+The content management system is a private application for authorized users only. It is used to author (**C**reate/**R**ead/**U**pdate/**D**elete) the content that is displayed in the TV application.
+
+![Use-case Content Management System application](./use-case_cms.drawio.svg)
 
 ## Prerequisites
 + [GNU Make](https://www.gnu.org/software/make/)
 + [Docker](https://hub.docker.com/search?offering=community&q=&type=edition&platform=desktop%2Cserver) and [Docker Compose](https://docs.docker.com/compose/install/)
+
+## Backend
+To build and start the backend run `make containers`.
+
+## Debugging
+You can debug containers using the Crome DevTools by going to [chrome://inspect](chrome://inspect).

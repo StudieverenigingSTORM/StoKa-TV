@@ -4,10 +4,10 @@ error:
 	@echo "Use \`make slides' to build HTML files for slides"
 	@exit 1
 
-slides_in  := $(wildcard slides_*.txt)
+slides_in  := $(wildcard slides/*.txt)
 slides_out  := $(slides_in:.txt=.html)
 
-slides_%.html: slides_%.txt
+%.html: %.txt
 	@echo "Building $@"
 	@pandoc -t revealjs -s $< -o $@ -V theme=simple
 
