@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  express-api:
+    hostname: express-api
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    ports:
+      - 3000:80
+      - 9229:9229 # For debugging
+    volumes:
+      - ./api:/usr/src/app
+      - /usr/src/app/node_modules
+      - media:/srv/media
+    build:
+      context: ./api
+    environment:
+      - NODE_ENV=$NODE_ENV
+      - DEBUG=$DEBUG
+    command: [npm, run, $API_START_SCRIPT]
+
+  # TODO
+  # frontend:
+  #   depends_on:
+  #     - api
+
+volumes:
+  media:
+    # TODO specify explicit mount point on host
+    # driver: local
+    # driver_opts:
+    #   type: 'none'
+    #   o: 'bind'
+    #   device: '/srv/stoka-tv-media'

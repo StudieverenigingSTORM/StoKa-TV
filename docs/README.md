@@ -27,7 +27,8 @@ The content management system is a private application for authorized users only
 + [Docker](https://hub.docker.com/search?offering=community&q=&type=edition&platform=desktop%2Cserver) and [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Backend
-To build and start the backend run `make containers`.
+To build and start the backend run `make debug-containers`.
 
 ## Debugging
-You can debug containers using the Crome DevTools by going to [chrome://inspect](chrome://inspect).
+You can debug containers using the Crome DevTools by going to [chrome://inspect](chrome://inspect).  
+To debug the API in visual studio code, use the launch configuration "Debug API" after starting the containers to attach the debugger. This will restart the process.
