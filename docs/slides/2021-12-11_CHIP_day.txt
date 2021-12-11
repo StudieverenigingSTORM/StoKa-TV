@@ -13,15 +13,15 @@ date: December 11, 2021
 
 ------------------
 
-![System overview](./system_overview.drawio.svg)
+![System overview](./2021-12-11_system_overview.drawio.svg)
 
 ------------------
 
-![Use-case Content Management System application](./use-case_cms.drawio.svg)
+![Use-case Content Management System application](./2021-12-11_use-case_cms.drawio.svg)
 
 ------------------
 
-![Flowchart TV application](./flow_tv.drawio.svg)
+![Flowchart TV application](./2021-12-11_flow_tv.drawio.svg)
 
 # Selected technologies
 
