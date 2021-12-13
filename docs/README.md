@@ -1,5 +1,6 @@
 # StoKa-TV
-Promotional display in the StoKa.
+Promotional display in the StoKa.  
+(Will replace [STORMTV](https://github.com/StudieverenigingSTORM/STORMTV))
 
 ## General
 This document contains general documentation, such as diagrams, about this project.
@@ -28,5 +29,5 @@ This application is also available in the browser to preview7review the content.
 To build and start the backend run `make debug-containers`.
 
 ## Debugging
-You can debug containers using the Crome DevTools by going to [chrome://inspect](chrome://inspect).  
-To debug the API in visual studio code, use the launch configuration "Debug API" after starting the containers to attach the debugger. This will restart the process.
+You can debug containers using the Crome DevTools by going to `chrome://inspect`.  
+To debug the API in Visual Studio Code, use the launch configuration "Debug API" after starting the containers to attach the debugger. This will restart the process.
