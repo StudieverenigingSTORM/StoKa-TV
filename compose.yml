@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  express-api:
+  api-server:
     hostname: express-api
     depends_on:
       - mongodb
@@ -10,11 +10,11 @@ services:
       - 3000:80
       - 9229:9229 # For debugging
     volumes:
-      - ./api:/usr/src/app
+      - ./api-server:/usr/src/app
       - /usr/src/app/node_modules
       - ${MEDIA_VOL}:/srv/media
     build:
-      context: ./api
+      context: ./api-server
     environment:
       - NODE_ENV=$NODE_ENV
       - DEBUG=$DEBUG
@@ -23,4 +23,4 @@ services:
   # TODO
   # frontend:
   #   depends_on:
-  #     - api
+  #     - api-server

@@ -1,0 +1,14 @@
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  },
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/app.js",
+    "debug": "nodemon -L -e js --inspect=0.0.0.0:9229 src/app.js"
+  }
+}
