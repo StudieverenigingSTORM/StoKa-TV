@@ -12,7 +12,7 @@ services:
     volumes:
       - ./api:/usr/src/app
       - /usr/src/app/node_modules
-      - media:/srv/media
+      - ${MEDIA_VOL}:/srv/media
     build:
       context: ./api
     environment:
@@ -24,12 +24,3 @@ services:
   # frontend:
   #   depends_on:
   #     - api
-
-volumes:
-  media:
-    # TODO specify explicit mount point on host
-    # driver: local
-    # driver_opts:
-    #   type: 'none'
-    #   o: 'bind'
-    #   device: '/srv/stoka-tv-media'
