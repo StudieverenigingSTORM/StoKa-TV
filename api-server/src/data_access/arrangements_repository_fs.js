@@ -59,20 +59,11 @@ module.exports = function (mediaDir) {
         return cfg;
     }
 
-    dataAcc.getFile = function(arrangement, filename) {
-        try {
-            return fs.readFileSync(`${mediaDir}/${arrangement}/${filename}`);
-        }
-        catch(e) {
-            console.error(e);
-            return null;
-        }
-    }
-
-    dataAcc.getFileStream = function(arrangement, filename, start, end) {
+    dataAcc.getFileStream = function(arrangement, filename, range = null) {
         const path = `${mediaDir}/${arrangement}/${filename}`;
         try {
-            return fs.createReadStream(path, {start, end});
+            const options = range == null ? {} : { start: range.start, end: range.end };
+            return fs.createReadStream(path, options);
         }
         catch(e) {
             console.error(e);

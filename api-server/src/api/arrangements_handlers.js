@@ -26,7 +26,7 @@ module.exports = function (controller) {
         const range = utils.getRangeFromRequest(req, size);
         // Stream video (return partial content) if possible
         if (range && mimetype.split('/')[0] == 'video') {
-            content = controller.getFileStream(arrangement, filename, range.start, range.end);
+            content = controller.getFileStream(arrangement, filename, range);
             res.writeHead(206, {
                 'Content-Type': mimetype,
                 'Content-disposition': `inline;filename=${arrangement}_${filename}`,
@@ -34,25 +34,20 @@ module.exports = function (controller) {
                 'Accept-Ranges': 'bytes',
                 'Content-Length': (range.end - range.start) + 1,
             });
-            if(content != null) {
-                console.log(typeof content);
-                content.pipe(res);
-                return; // End function here to stop returning content
-            }
         }
         else {
-            content = controller.getFile(arrangement, filename);
+            content = controller.getFileStream(arrangement, filename, range);
             res.writeHead(200, {
                 'Content-Type': mimetype,
                 'Content-disposition': `inline;filename=${arrangement}_${filename}`,
-                'Content-Length': content.length,
+                'Content-Length': size,
             });
         }
         if (content == null) {
             res.status(404).end()
         }
         else {
-            res.end(Buffer.from(content, 'binary'));
+            content.pipe(res);
         }
     }
 

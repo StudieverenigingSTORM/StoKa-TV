@@ -35,8 +35,6 @@ module.exports = function (dataSource) {
         return cfg;
     };
 
-    controller.getFile = dataSource.getFile;
-
     controller.getFileStream = dataSource.getFileStream;
 
     controller.getFileSize = dataSource.getFileSize;
