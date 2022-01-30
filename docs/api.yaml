@@ -38,17 +38,23 @@ paths:
               schema:
                 type: object
                 properties:
-                  name:
+                  title:
                     type: string
-                    example: 1_main-arrangement
+                    example: "Main"
                   metadata:
                     type: object
                     properties:
                       defined: 
                         type: boolean
+                        description: |
+                          Indicates if corresponding arrangement.yaml is present
+                          (if not, arrangement is generated instead)
                       invalid:
                         type: boolean
                         default: false
+                        description: |
+                          Indicates that the corresponding arrangement.yaml is invalid
+                          (arrangement is generated instead)
                   items:
                     type: array
                     items:
@@ -56,7 +62,7 @@ paths:
                       properties:
                         file:
                           type: string
-                          example: myVideo.mp4
+                          example: bunny.mp4
                         type:
                           type: string
                           enum: ['image', 'video']
@@ -64,6 +70,7 @@ paths:
                         duration:
                           type: number
                           example: 23.57
+                          description: How long should the content be played (also for images)
   /arrangements/{arrangement}/{file}:
     get:
       tags: ['Arrangements']

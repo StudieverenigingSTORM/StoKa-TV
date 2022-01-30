@@ -30,7 +30,7 @@ module.exports = function (mediaDir) {
         const doesArrangementFileExist = fs.existsSync(arrangementFilename);
         let cfg = {};
         cfg.metadata = { defined: doesArrangementFileExist, invalid: false }
-        cfg.name = ''
+        cfg.title = ''
         cfg.items = [];
         if (doesArrangementFileExist) {
             // load config

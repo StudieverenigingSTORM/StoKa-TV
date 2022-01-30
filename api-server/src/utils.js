@@ -4,7 +4,7 @@ const mime = require('mime-types')
 const imageFileExtensions = ['.png', '.jpg', '.jpeg'];
 const videoFileExtensions = ['.mp4'];
 const arrangementSchema = {
-    name: { type: String, required: false },
+    title: { type: String, required: false },
     items: [{ 
         file: { type: String, required: true },
         duration: { type: Number, require: false },
