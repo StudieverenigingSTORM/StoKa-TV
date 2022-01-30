@@ -17,7 +17,7 @@ module.exports = function (dataSource) {
         }
         // Apply type annotation
         cfg.items = cfg.items.map(i => {
-            i.type = utils.getFileType(i.file);
+            i.type = utils.getMimeType(i.file).split('/')[0];
             return i;
         });
         // Apply default image display time
@@ -34,6 +34,8 @@ module.exports = function (dataSource) {
         });
         return cfg;
     };
+
+    controller.getFile = dataSource.getFile;
 
     return controller;
 };

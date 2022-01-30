@@ -12,6 +12,7 @@ const handlers = require('./api/arrangements_handlers')(controller);
 
 app.get('/arrangements', handlers.listArrangements);
 app.get('/arrangements/:arrangement', handlers.getArrangement);
+app.get('/arrangements/:arrangement/:file', handlers.getFile);
 
 app.listen(port, () => {
     console.log(`API running on port ${port} of ${require('os').hostname}`);

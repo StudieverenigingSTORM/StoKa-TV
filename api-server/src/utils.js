@@ -1,4 +1,5 @@
 const validateSchema = require('yaml-schema-validator');
+const mime = require('mime-types')
 
 const imageFileExtensions = ['.png', '.jpg', '.jpeg'];
 const videoFileExtensions = ['.mp4'];
@@ -14,14 +15,5 @@ module.exports = {
     hasValidExtension: (filename) => 
         imageFileExtensions.concat(videoFileExtensions).filter(e => filename.toLowerCase().endsWith(e)).length == 1,
     validateSchema: (arrangement) => validateSchema(arrangement, { schema: arrangementSchema }),
-    getFileType: (filename) => {
-        let type = 'unknown';
-        if(imageFileExtensions.filter(e => filename.toLowerCase().endsWith(e)).length != 0) {
-            type = 'image';
-        }
-        else if(videoFileExtensions.filter(e => filename.toLowerCase().endsWith(e)).length != 0) {
-            type = 'video';
-        }
-        return type;
-    },
+    getMimeType: (filename) => mime.lookup(filename),
 }

@@ -59,5 +59,15 @@ module.exports = function (mediaDir) {
         return cfg;
     }
 
+    dataAcc.getFile = function(arrangement, filename) {
+        try {
+            return fs.readFileSync(`${mediaDir}/${arrangement}/${filename}`);
+        }
+        catch(e) {
+            console.error(e);
+            return null;
+        }
+    }
+
     return dataAcc;
 };
