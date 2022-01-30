@@ -4,11 +4,17 @@
   "main": "src/app.js",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.15"
+    "get-video-duration": "^4.0.0",
+    "synchronized-promise": "^0.3.1",
+    "yaml": "^1.10.2",
+    "yaml-schema-validator": "^1.2.3"
   },
   "type": "commonjs",
   "scripts": {
     "start": "node src/app.js",
     "debug": "nodemon -L -e js --inspect=0.0.0.0:9229 src/app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

@@ -5,11 +5,11 @@ error:
 	@echo "Use \`make containers' to build the containers for deployment"
 	@exit 1
 
-.PHONY: containers-dev
+.PHONY: containers
 containers:
 	@docker compose build
 
-.PHONY: containers-dev
+.PHONY: debug-containers
 debug-containers: export API_START_SCRIPT=debug
 debug-containers: export DEBUG=express:*
 debug-containers: export NODE_ENV=development
