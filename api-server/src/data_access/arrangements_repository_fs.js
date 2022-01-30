@@ -69,5 +69,26 @@ module.exports = function (mediaDir) {
         }
     }
 
+    dataAcc.getFileStream = function(arrangement, filename, start, end) {
+        const path = `${mediaDir}/${arrangement}/${filename}`;
+        try {
+            return fs.createReadStream(path, {start, end});
+        }
+        catch(e) {
+            console.error(e);
+            return null;
+        }
+    }
+
+    dataAcc.getFileSize = function(arrangement, filename) {
+        try{
+            return fs.statSync(`${mediaDir}/${arrangement}/${filename}`).size;
+        }
+        catch(e) {
+            console.error(e);
+            return 0;
+        }
+    }
+
     return dataAcc;
 };

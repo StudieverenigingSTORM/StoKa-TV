@@ -37,5 +37,9 @@ module.exports = function (dataSource) {
 
     controller.getFile = dataSource.getFile;
 
+    controller.getFileStream = dataSource.getFileStream;
+
+    controller.getFileSize = dataSource.getFileSize;
+
     return controller;
 };
