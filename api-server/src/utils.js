@@ -11,9 +11,14 @@ const arrangementSchema = {
     }],
 };
 
+const isImageFile = (filename) => imageFileExtensions.filter(e => filename.toLowerCase().endsWith(e)).length == 1;
+const isVideoFile = (filename) => videoFileExtensions.filter(e => filename.toLowerCase().endsWith(e)).length == 1;
+
 module.exports = {
     hasValidExtension: (filename) =>
-        imageFileExtensions.concat(videoFileExtensions).filter(e => filename.toLowerCase().endsWith(e)).length == 1,
+        isImageFile(filename) || isVideoFile(filename),
+    isImageFile: isImageFile,
+    isVideoFile: isVideoFile,
     validateSchema: (arrangement) => validateSchema(arrangement, { schema: arrangementSchema }),
     getMimeType: (filename) => mime.lookup(filename),
     getRangeFromRequest: (req, fileSize) => {

@@ -105,3 +105,18 @@ paths:
               schema:
                 type: string
                 format: binary
+  /borrel-menu/:
+    get:
+      tags: ['Borrel Menu']
+      responses:
+        '200':
+          description: OK
+          content:
+            'image/jpeg':
+              schema:
+                type: string
+                format: binary
+            'image/png':
+              schema:
+                type: string
+                format: binary

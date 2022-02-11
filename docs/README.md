@@ -60,4 +60,8 @@ items: # List of
   # If duration is not present, the default duration is used
   # (Video length for videos and 5 seconds for images)
 ```
-To get started, copy `/media.example/` to `/media/`.
+
+Place an image with the name `borrel-menu` into the root of the content directory to use as the borrel menu.
+
+To get started, copy `/media.example/` to `/media/`.  
+(⚠ This content is not licensed under the same license as the code.)

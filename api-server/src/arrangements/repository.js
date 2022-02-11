@@ -69,7 +69,7 @@ class ArrangementsRepository {
 
     getFileStream(arrangement, filename, range = null) {
         const path = `${this.mediaDir}/${arrangement}/${filename}`;
-        if (fs.existsSync(path) && fs.statSync(path).isFile()) {
+        if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
             const options = range == null ? {} : { start: range.start, end: range.end };
             return fs.createReadStream(path, options);
         }
@@ -82,7 +82,7 @@ class ArrangementsRepository {
         const path = `${this.mediaDir}/${arrangement}/${filename}`;
         let size = 0;
         if (fs.existsSync(path)) {
-            const stat = fs.statSync(path);
+            const stat = fs.lstatSync(path);
             if (stat.isFile()) {
                 size = stat.size;
             }
