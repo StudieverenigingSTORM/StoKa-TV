@@ -1,26 +1,35 @@
 version: '3.8'
 
 services:
-  api-server:
-    hostname: express-api
-    depends_on:
-      - mongodb
+  backend:
+    hostname: backend
     restart: unless-stopped
     ports:
       - 3000:80
       - 9229:9229 # For debugging
     volumes:
-      - ./api-server:/usr/src/app
-      - /usr/src/app/node_modules
       - ${MEDIA_VOL}:/srv/media
+      # Mount source code to restart without rebuilding image
+      # (only for development)
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
     build:
-      context: ./api-server
+      context: ./backend
     environment:
       - NODE_ENV=$NODE_ENV
-      - DEBUG=$DEBUG
-    command: [npm, run, $API_START_SCRIPT]
+      - DEBUG=$BACKEND_DEBUG
+    command: [npm, run, $BACKEND_START_SCRIPT]
 
-  # TODO
-  # frontend:
-  #   depends_on:
-  #     - api-server
+  frontend:
+    depends_on:
+      - backend
+    hostname: frontend
+    restart: unless-stopped
+    ports:
+      - 3001:80
+    volumes:
+      # Mount source code to restart without rebuilding image
+      # (only for development)
+      - ./frontend/src:/usr/src/app/src
+    build:
+      context: ./frontend

@@ -11,11 +11,12 @@ RUN npm install
 RUN npm install -g nodemon
 EXPOSE 9229
 
+# Switch user
+USER node
+
 # Copy source files
 COPY . .
 
-# Switch user
-USER node
 
 # Run app
 EXPOSE 80

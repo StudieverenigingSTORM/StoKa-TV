@@ -1,8 +1,10 @@
 {
-  "name": "api-server",
+  "name": "backend",
   "version": "1.0.0",
+  "private": true,
   "main": "src/app.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "get-video-duration": "^4.0.0",
     "mime-types": "^2.1.34",

@@ -10,8 +10,8 @@ containers:
 	@docker compose build
 
 .PHONY: debug-containers
-debug-containers: export API_START_SCRIPT=debug
-debug-containers: export DEBUG=express:*
+debug-containers: export BACKEND_DEBUG=express:*
+debug-containers: export BACKEND_START_SCRIPT=debug
 debug-containers: export NODE_ENV=development
 debug-containers: export MEDIA_VOL=./media
 debug-containers:

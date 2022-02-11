@@ -29,8 +29,8 @@ This application is also available in the browser to preview7review the content.
 To build and start the backend run `make debug-containers`.
 
 ## Debugging
-You can debug containers using the Crome DevTools by going to `chrome://inspect`.  
-To debug the API in Visual Studio Code, use the launch configuration "Debug API" after starting the containers to attach the debugger. This will restart the process.
+You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  
+To debug the API in Visual Studio Code, use the launch configuration "Debug API" after starting the container to attach the debugger. This will restart the process.
 
 ## API
 The API documentation is contained in the file `/docs/api.yaml` can be viewed [here](https://editor.swagger.io/?url=https://raw.githubusercontent.com/StudieverenigingSTORM/StoKa-TV/main/docs/api.yaml).
