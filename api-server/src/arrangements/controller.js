@@ -3,17 +3,23 @@
 const globalCfg = require('../config');
 const utils = require('../utils');
 
-module.exports = function (dataSource) {
-    let controller = {};
+class ArrangementsController {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
 
-    controller.listArrangements = dataSource.listArrangements;
+        this.getArrangement = this.getArrangement.bind(this);
 
-    controller.getArrangement = (arrangement) => {
-        let cfg = dataSource.getArrangement(arrangement);
+        this.listArrangements = this.dataSource.listArrangements;
+        this.getFileStream = this.dataSource.getFileStream;
+        this.getFileSize = this.dataSource.getFileSize;
+    }
+
+    getArrangement(arrangement) {
+        let cfg = this.dataSource.getArrangement(arrangement);
         if (!cfg.metadata.defined || cfg.metadata.invalid) {
             // If no configuration file was found, generate a default configuration
             cfg.name = arrangement;
-            cfg.items = dataSource.getMediaFiles(arrangement).map(f => { return { file: f } });
+            cfg.items = this.dataSource.getMediaFiles(arrangement).map(f => { return { file: f } });
         }
         // Apply type annotation
         cfg.items = cfg.items.map(i => {
@@ -23,21 +29,17 @@ module.exports = function (dataSource) {
         // Apply default image display time
         cfg.items = cfg.items.map(i => {
             if (!i.hasOwnProperty('duration')) {
-                if(i.type == 'image') {
+                if (i.type == 'image') {
                     i.duration = globalCfg.defaultImageDuration;
                 }
-                else if(i.type == 'video') {
-                    i.duration = dataSource.getVideoLength(arrangement, i.file);
+                else if (i.type == 'video') {
+                    i.duration = this.dataSource.getVideoLength(arrangement, i.file);
                 }
             }
             return i;
         });
         return cfg;
     };
+}
 
-    controller.getFileStream = dataSource.getFileStream;
-
-    controller.getFileSize = dataSource.getFileSize;
-
-    return controller;
-};
+module.exports = ArrangementsController;

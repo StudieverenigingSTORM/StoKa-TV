@@ -7,13 +7,17 @@ const config = require('./config');
 const port = process.env.PORT || 80;
 const mediaDir = '/srv/media';
 
-const repository = require('./data_access/arrangements_repository_fs')(mediaDir);
-const controller = require('./business_service/arrangement_controller')(repository);
-const handlers = require('./api/arrangements_handlers')(controller);
+const ArrangementsHandler = require('./arrangements/handler');
+const ArrangementsController = require('./arrangements/controller');
+const ArrangementsRepository = require('./arrangements/repository');
 
-app.get(`${config.apiBasePath}/arrangements`, handlers.listArrangements);
-app.get(`${config.apiBasePath}/arrangements/:arrangement`, handlers.getArrangement);
-app.get(`${config.apiBasePath}/arrangements/:arrangement/:file`, handlers.getFile);
+const arrangementsRepository = new ArrangementsRepository(mediaDir)
+const arrangementController = new ArrangementsController(arrangementsRepository);
+const arrangementsHandler = new ArrangementsHandler(arrangementController);
+
+app.get(`${config.apiBasePath}/arrangements`, arrangementsHandler.listArrangements);
+app.get(`${config.apiBasePath}/arrangements/:arrangement`, arrangementsHandler.getArrangement);
+app.get(`${config.apiBasePath}/arrangements/:arrangement/:file`, arrangementsHandler.getFile);
 
 app.listen(port, () => {
     console.log(`API running on port ${port} of ${require('os').hostname}`);
