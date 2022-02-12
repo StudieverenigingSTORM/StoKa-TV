@@ -35,6 +35,7 @@ services:
     depends_on:
       - backend
       - frontend
+      - swagger-ui
     hostname: reverse-proxy
     restart: unless-stopped
     ports:
