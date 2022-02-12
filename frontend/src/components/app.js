@@ -7,6 +7,7 @@ define(function (require, exports, module) {
     const Arrangement = require('components/arrangement');
     const ErrorMessage = require('components/error-message');
     const LoadingScreen = require('components/loading-screen');
+    const Title = require('components/title');
 
     class App extends React.Component {
         constructor(props) {
@@ -96,15 +97,17 @@ define(function (require, exports, module) {
         }
 
         loadArrangments() {
-            fetch(`${this.props.apiBaseUrl}/arrangements`)
+            const url = `${this.props.apiBaseUrl}/arrangements`;
+            return fetch(url)
                 .then((result) => {
                     if (!result.ok) {
-                        throw Error('Error getting result from API');
+                        throw `Error getting result from API\n(fetching ${url})`;
                     }
                     result.json().then((data) => {
                         this.setState({
                             hasLoaded: true,
                             arrangements: data,
+                            error: null,
                         });
                         this.selectArrangementIfNullOrDeleted();
                     });
@@ -122,10 +125,29 @@ define(function (require, exports, module) {
         render() {
             const { error, hasLoaded, currentArrangement } = this.state;
             if (error) {
-                return e(ErrorMessage, { errorObject: error });
+                return e(ErrorMessage, { message: error });
             }
             else if (hasLoaded && currentArrangement != null) {
-                return e(Arrangement, { arrangement: currentArrangement });
+                const arrangement = e(
+                    Arrangement,
+                    {
+                        key: 'arrangement',
+                        apiBaseUrl: this.props.apiBaseUrl,
+                        arrangement: currentArrangement,
+                    }
+                );
+                const title = e(
+                    Title,
+                    {
+                        key: 'title',
+                        apiBaseUrl: this.props.apiBaseUrl,
+                        arrangement: currentArrangement,
+                    },
+                )
+                return e('div', null, [
+                    arrangement,
+                    title,
+                ]);
             }
             else {
                 return e(LoadingScreen);

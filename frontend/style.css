@@ -1,0 +1,45 @@
+:root {
+    /* TODO Color palette */
+    --primary-1: #a31621ff; /* ruby red */
+    --secondary-1: #f9dbbdff; /* peach puff */
+    --secondary-2: #fca17dff; /* light salmon */
+    --accent-1: #0d0628ff; /* dark purple */
+    --accent-2: #646f4bff; /* dark olive green */
+}
+
+body {
+    margin: 0px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: var(--secondary-1);
+    background-color: var(--accent-1);
+}
+
+.error-message {
+    background-color: red !important;
+}
+
+[class*="title-"] {
+    width: 100%;
+    text-align: center;
+    background-color: var(--accent-2);
+    line-height: 100px;
+    position: fixed;
+    bottom: 100px;
+}
+.title-enter {
+    opacity: 0;
+}
+.title-enter-active {
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+.title-exit {
+    opacity: 1;
+}
+.title-exit-active {
+    opacity: 0;
+    transition: opacity 300ms linear;
+}
+.title-exit-done {
+    opacity: 0;
+}

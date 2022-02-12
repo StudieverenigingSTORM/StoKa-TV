@@ -28,8 +28,8 @@ class ArrangementsRepository {
         const arrangementFilename = `${arrangementDir}/arrangement.yaml`;
         const doesArrangementFileExist = fs.existsSync(arrangementFilename);
         let cfg = {};
-        cfg.metadata = { defined: doesArrangementFileExist, invalid: false }
-        cfg.title = ''
+        cfg.metadata = { defined: doesArrangementFileExist, invalid: false };
+        cfg.title = arrangement;
         cfg.items = [];
         if (doesArrangementFileExist) {
             // load config
@@ -42,7 +42,7 @@ class ArrangementsRepository {
                     throw Error(JSON.stringify(schemaErrors));
                 }
                 // Validate filenames
-                const mediaFiles = dataAcc.getMediaFiles(arrangement);
+                const mediaFiles = this.getMediaFiles(arrangement);
                 parsed.items.forEach(i => {
                     if (mediaFiles.indexOf(i.file) == -1) {
                         throw Error(`${i.file} does not exist in ${arrangement}`);

@@ -9,3 +9,4 @@ media
 frontend/src/react-dom.js
 frontend/src/react.js
 frontend/src/require.js
+frontend/src/react-transition-group.js

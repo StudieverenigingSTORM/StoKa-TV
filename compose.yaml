@@ -27,7 +27,7 @@ services:
     volumes:
       # Mount source code to restart without rebuilding image
       # (TODO only for development)
-      - ./frontend/src:/usr/src/app/src
+      - ./frontend:/usr/src/app
     build:
       context: ./frontend
 

@@ -10,11 +10,11 @@ define(function (require, exports, module) {
         }
 
         componentDidMount() {
-            console.error(this.props.errorObject);
+            console.error(this.props.message);
         }
 
         render() {
-            return e('h1', null, 'Error!');
+            return e('h1', { className: 'error-message' }, 'Error!');
         }
     }
 
