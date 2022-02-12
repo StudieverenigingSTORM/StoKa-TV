@@ -3,10 +3,6 @@
 const express = require('express');
 const app = express();
 
-// TODO Allow cross-site request only during development
-var cors = require('cors');
-app.use(cors());
-
 const config = require('./config');
 
 const port = process.env.PORT || 80;

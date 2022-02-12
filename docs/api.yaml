@@ -1,50 +1,55 @@
-openapi: '3.0.2'
+openapi: 3.0.2
 info:
   title: StoKa-TV API
   version: '1.0'
 servers:
-  - url: https://localhost:3000/
+  - url: 'http://localhost:8080{apiBasePath}'
+    variables:
+      apiBasePath:
+        default: /api
 paths:
   /arrangements:
     get:
-      tags: ['Arrangements']
+      tags:
+        - Arrangements
       responses:
         '200':
           description: OK
           content:
-            'application/json':
+            application/json:
               schema:
                 type: array
-                example: ["1_main-arrangement", "2_secondary-arrangement"]
+                example:
+                  - 1_main-arrangement
+                  - 2_secondary-arrangement
                 items:
                   type: string
-  /arrangements/{arrangement}:
+  '/arrangements/{arrangement}':
     get:
-      tags: ['Arrangements']
+      tags:
+        - Arrangements
       parameters:
-        - name: "arrangement"
-          in: "path"
+        - name: arrangement
+          in: path
           required: true
           example: 1_main-arrangement
           schema:
             type: string
       responses:
-        '404':
-          description: Not found
         '200':
           description: OK
           content:
-            'application/json':
+            application/json:
               schema:
                 type: object
                 properties:
                   title:
                     type: string
-                    example: "Main"
+                    example: Main
                   metadata:
                     type: object
                     properties:
-                      defined: 
+                      defined:
                         type: boolean
                         description: |
                           Indicates if corresponding arrangement.yaml is present
@@ -52,8 +57,10 @@ paths:
                       invalid:
                         type: boolean
                         default: false
-                        description: |
-                          Indicates that the corresponding arrangement.yaml is invalid
+                        description: >
+                          Indicates that the corresponding arrangement.yaml is
+                          invalid
+
                           (arrangement is generated instead)
                   items:
                     type: array
@@ -65,58 +72,66 @@ paths:
                           example: bunny.mp4
                         type:
                           type: string
-                          enum: ['image', 'video']
+                          enum:
+                            - image
+                            - video
                           example: video
                         duration:
                           type: number
                           example: 23.57
-                          description: How long should the content be played (also for images)
-  /arrangements/{arrangement}/{file}:
+                          description: >-
+                            How long should the content be played (also for
+                            images)
+        '404':
+          description: Not found
+  '/arrangements/{arrangement}/{file}':
     get:
-      tags: ['Arrangements']
+      tags:
+        - Arrangements
       parameters:
-        - name: "arrangement"
-          in: "path"
+        - name: arrangement
+          in: path
           required: true
           example: 1_main-arrangement
           schema:
             type: string
-        - name: "file"
-          in: "path"
+        - name: file
+          in: path
           required: true
           example: myVideo.mp4
           schema:
             type: string
       responses:
-        '404':
-          description: Not found
         '200':
           description: OK
           content:
-            'video/mp4':
+            video/mp4:
               schema:
                 type: string
                 format: binary
-            'image/jpeg':
+            image/jpeg:
               schema:
                 type: string
                 format: binary
-            'image/png':
+            image/png:
               schema:
                 type: string
                 format: binary
+        '404':
+          description: Not found
   /borrel-menu/:
     get:
-      tags: ['Borrel Menu']
+      tags:
+        - Borrel Menu
       responses:
         '200':
           description: OK
           content:
-            'image/jpeg':
+            image/jpeg:
               schema:
                 type: string
                 format: binary
-            'image/png':
+            image/png:
               schema:
                 type: string
                 format: binary

@@ -35,7 +35,7 @@ define(function (require, exports, module) {
                 .catch((error) => this.setState({
                     hasLoaded: true,
                     error
-                }))
+                }));
         }
 
         render() {

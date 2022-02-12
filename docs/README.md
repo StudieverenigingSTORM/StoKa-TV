@@ -25,8 +25,17 @@ This application is also available in the browser to preview7review the content.
 + [GNU Make](https://www.gnu.org/software/make/)
 + [Docker](https://hub.docker.com/search?offering=community&q=&type=edition&platform=desktop%2Cserver) and [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Backend
-To build and start the backend run `make debug-containers`.
+## Running the web application locally
+To build and start the web application run `make debug-containers`.  
+Then navigate to http://localhost:8080.
+
+## Deploying the web application
+The following optimizations should be performed before deploying the web application into production:
+* Optimize layers of docker images (use [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/))
+* Remove nodemon in backend image (see `/backend/Dockerfile`)
+* Remove volumes mounting code from host (see `/compose.yaml`)
+* Securely connect to reverse-proxy (TLS termination)
+* Replace frontend dependencies with minified versions (see `/frontend/download_dependencies.sh`)
 
 ## Debugging
 You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  

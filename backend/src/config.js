@@ -1,5 +1,5 @@
 module.exports = {
-    apiBasePath: '',
+    apiBasePath: '/api',
     defaultImageDuration: 5,
     borrelMenuFilenameWithoutExtension: 'borrel-menu',
 }
