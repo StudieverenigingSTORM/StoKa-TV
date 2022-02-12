@@ -8,8 +8,9 @@ define(function (require, exports, module) {
     const ReactDom = require('react-dom');
     const e = React.createElement;
 
-    const Demo = require('demo');
+    const App = require('components/app');
 
     const domContainer = document.querySelector('#reactDomContainer');
-    ReactDom.render(e(Demo), domContainer);
+    const app = e(App, { apiBaseUrl: config.apiBaseUrl })
+    ReactDom.render(app, domContainer);
 });
