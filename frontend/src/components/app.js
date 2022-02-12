@@ -73,7 +73,7 @@ define(function (require, exports, module) {
             if(arrangements == null) {
                 return
             }
-            var index = this.getCurrentArrangementIndex();
+            let index = this.getCurrentArrangementIndex();
             if(index != null) {
                 index = (index + 1) % arrangements.length;
                 this.setState({
@@ -87,7 +87,7 @@ define(function (require, exports, module) {
             if(arrangements == null) {
                 return
             }
-            var index = this.getCurrentArrangementIndex();
+            let index = this.getCurrentArrangementIndex();
             if(index != null) {
                 index = (index - 1 + arrangements.length) % arrangements.length;
                 this.setState({
@@ -97,7 +97,7 @@ define(function (require, exports, module) {
         }
 
         loadArrangments() {
-            const url = `${this.props.apiBaseUrl}/arrangements`;
+            const url = `${this.props.config.apiBaseUrl}/arrangements`;
             return fetch(url)
                 .then((result) => {
                     if (!result.ok) {
@@ -132,7 +132,7 @@ define(function (require, exports, module) {
                     Arrangement,
                     {
                         key: 'arrangement',
-                        apiBaseUrl: this.props.apiBaseUrl,
+                        apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
                     }
                 );
@@ -140,7 +140,7 @@ define(function (require, exports, module) {
                     Title,
                     {
                         key: 'title',
-                        apiBaseUrl: this.props.apiBaseUrl,
+                        apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
                     },
                 )

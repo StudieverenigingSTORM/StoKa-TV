@@ -11,6 +11,6 @@ define(function (require, exports, module) {
     const App = require('components/app');
 
     const domContainer = document.querySelector('#reactDomContainer');
-    const app = e(App, { apiBaseUrl: config.apiBaseUrl })
+    const app = e(App, { config: config })
     ReactDom.render(app, domContainer);
 });

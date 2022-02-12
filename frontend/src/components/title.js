@@ -77,7 +77,7 @@ define(function (require, exports, module) {
                 timeout: 300,
                 classNames: 'title',
             }, children);
-            var activeElement = transition('loading', e('span', null));
+            let activeElement = transition('loading', e('span', null));
             if (error) {
                 activeElement = transition('error', e(ErrorMessage, { message: error }));
             }
