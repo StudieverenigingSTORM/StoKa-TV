@@ -98,7 +98,7 @@ paths:
         - name: file
           in: path
           required: true
-          example: myVideo.mp4
+          example: bunny.mp4
           schema:
             type: string
       responses:

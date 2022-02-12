@@ -9,7 +9,7 @@ services:
     volumes:
       - ${MEDIA_VOL}:/srv/media
       # Mount source code to restart without rebuilding image
-      # (only for development)
+      # (TODO only for development)
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
     build:
@@ -17,7 +17,7 @@ services:
     environment:
       - NODE_ENV=$NODE_ENV
       - DEBUG=$BACKEND_DEBUG
-    command: [npm, run, $BACKEND_START_SCRIPT]
+    command: [ npm, run, $BACKEND_START_SCRIPT ]
 
   frontend:
     depends_on:
@@ -26,7 +26,7 @@ services:
     restart: unless-stopped
     volumes:
       # Mount source code to restart without rebuilding image
-      # (only for development)
+      # (TODO only for development)
       - ./frontend/src:/usr/src/app/src
     build:
       context: ./frontend
@@ -41,3 +41,13 @@ services:
       - 8080:80
     build:
       context: ./reverse-proxy
+
+  # Interactive API documentation
+  # (TODO only for development)
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    hostname: swagger-ui
+    volumes:
+      - ./docs:/usr/share/nginx/html/docs
+    environment:
+      API_URL: docs/openapi.yaml

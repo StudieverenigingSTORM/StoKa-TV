@@ -36,13 +36,15 @@ The following optimizations should be performed before deploying the web applica
 * Remove volumes mounting code from host (see `/compose.yaml`)
 * Securely connect to reverse-proxy (TLS termination)
 * Replace frontend dependencies with minified versions (see `/frontend/download_dependencies.sh`)
+* Enabled caching for frontend (see `/frontend/nginx.conf`)
+* Remove API documentation (see `/compose.yaml` and `/reverse-proxy/nginx.conf`)
 
 ## Debugging
 You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  
 To debug the API in Visual Studio Code, use the launch configuration "Debug API" after starting the container to attach the debugger. This will restart the process.
 
 ## API
-The API documentation is contained in the file `/docs/api.yaml` can be viewed [here](https://editor.swagger.io/?url=https://raw.githubusercontent.com/StudieverenigingSTORM/StoKa-TV/main/docs/api.yaml).
+The API documentation is contained in the file `/docs/openapi.yaml` can be tested through the interactive documentation running on http://localhost:8080/docs.
 
 ## Content
 The backend should mount a directory containing the content that should be served by the application (see `/compose.yaml`).  
