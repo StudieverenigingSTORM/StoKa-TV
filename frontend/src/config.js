@@ -5,5 +5,6 @@ define(function (require, exports, module) {
         title: 'StoKa-TV',
         apiBaseUrl: '/api',
         titleTimeout: 5000,
+        reloadArrangementsInterval: 5000,
     };
 });

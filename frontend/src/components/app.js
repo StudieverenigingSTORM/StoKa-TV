@@ -72,7 +72,7 @@ define(function (require, exports, module) {
             this.setState({
                 currentArrangement: arrangement,
             });
-            window.history.pushState({}, '', arrangement);
+            window.history.replaceState({}, '', arrangement);
         }
 
         selectNextArrangement() {
@@ -123,6 +123,7 @@ define(function (require, exports, module) {
 
         componentDidMount() {
             this.loadArrangements();
+            setInterval(() => this.loadArrangements(), this.props.config.reloadArrangementsInterval);
         }
 
         render() {
