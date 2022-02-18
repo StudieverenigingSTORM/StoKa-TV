@@ -13,13 +13,13 @@ define(function (require, exports, module) {
         constructor(props) {
             super(props);
             
-            this.setupKeyListeners(document);
+            this.setupKeyListeners(window.document);
 
             this.state = {
                 error: null,
                 hasLoaded: false,
                 arrangements: [],
-                currentArrangement: null,
+                currentArrangement: window.location.pathname.substring(1),
             }
         }
 
@@ -48,16 +48,15 @@ define(function (require, exports, module) {
             return index;
         }
 
-        selectArrangementIfNullOrDeleted() {
-            if(this.state.currentArrangement == null) {
-                const index = this.getCurrentArrangementIndex();
-                this.setState({
-                    currentArrangement: this.state.arrangements[index],
-                });
+        selectArrangementIfCurrentNullOrDeleted() {
+            const arrangements = this.state.arrangements;
+            const currentArrangement = this.state.currentArrangement;
+            if(arrangements.indexOf(currentArrangement) == -1) {
+                this.selectArrangement(0);
             }
         }
 
-        selectArrangement(key) {
+        selectArrangementByKey(key) {
             if(arrangements == null) {
                 return
             }
@@ -68,6 +67,14 @@ define(function (require, exports, module) {
             console.error(Error('not implemented'));
         }
 
+        selectArrangement(index) {
+            const arrangement = this.state.arrangements[index]
+            this.setState({
+                currentArrangement: arrangement,
+            });
+            window.history.pushState({}, '', arrangement);
+        }
+
         selectNextArrangement() {
             const arrangements = this.state.arrangements
             if(arrangements == null) {
@@ -76,9 +83,7 @@ define(function (require, exports, module) {
             let index = this.getCurrentArrangementIndex();
             if(index != null) {
                 index = (index + 1) % arrangements.length;
-                this.setState({
-                    currentArrangement: arrangements[index],
-                });
+                this.selectArrangement(index)
             }
         }
 
@@ -90,13 +95,11 @@ define(function (require, exports, module) {
             let index = this.getCurrentArrangementIndex();
             if(index != null) {
                 index = (index - 1 + arrangements.length) % arrangements.length;
-                this.setState({
-                    currentArrangement: arrangements[index],
-                });
+                this.selectArrangement(index)
             }
         }
 
-        loadArrangments() {
+        loadArrangements() {
             const url = `${this.props.config.apiBaseUrl}/arrangements`;
             return fetch(url)
                 .then((result) => {
@@ -109,7 +112,7 @@ define(function (require, exports, module) {
                             arrangements: data,
                             error: null,
                         });
-                        this.selectArrangementIfNullOrDeleted();
+                        this.selectArrangementIfCurrentNullOrDeleted();
                     });
                 })
                 .catch((error) => this.setState({
@@ -119,7 +122,7 @@ define(function (require, exports, module) {
         }
 
         componentDidMount() {
-            this.loadArrangments();
+            this.loadArrangements();
         }
 
         render() {
