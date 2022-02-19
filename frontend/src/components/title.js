@@ -1,13 +1,12 @@
 'use strict';
 
 define(function (require, exports, module) {
-    const React = require('react');
-    const e = React.createElement;
+    const BaseComponent = require('components/base');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
     const ErrorMessage = require('components/error-message');
 
-    class Title extends React.Component {
+    class Title extends BaseComponent {
         constructor(props) {
             super(props);
 
@@ -21,6 +20,7 @@ define(function (require, exports, module) {
         }
 
         componentDidMount() {
+            super.componentDidMount();
             this.loadTitle().then(() => this.showTitle());
         }
 
@@ -34,11 +34,11 @@ define(function (require, exports, module) {
             if (this.state.timeout != null) {
                 clearTimeout(this.state.timeout);
             }
-            const timeout = setTimeout(() => this.setState({
+            const timeout = setTimeout(() => this.setStateIfComponentIsMounted({
                 timeout: null,
                 isHidden: true,
             }), this.props.timeout || 5000);
-            this.setState({
+            this.setStateIfComponentIsMounted({
                 timeout: timeout,
                 isHidden: false
             });
@@ -52,14 +52,14 @@ define(function (require, exports, module) {
                         throw `Error getting result from API\n(fetching ${url})`;
                     }
                     result.json().then((data) => {
-                        this.setState({
+                        this.setStateIfComponentIsMounted({
                             hasLoaded: true,
                             title: data.title,
                             error: null,
                         });
                     });
                 })
-                .catch((error) => this.setState({
+                .catch((error) => this.setStateIfComponentIsMounted({
                     hasLoaded: true,
                     isHidden: false,
                     error

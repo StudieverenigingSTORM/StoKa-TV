@@ -1,10 +1,9 @@
 'use strict';
 
 define(function (require, exports, module) {
-    const React = require('react');
-    const e = React.createElement;
+    const BaseComponent = require('components/base');
 
-    class LoadingScreen extends React.Component {
+    class LoadingScreen extends BaseComponent {
         constructor(props) {
             super(props);
         }

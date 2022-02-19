@@ -1,8 +1,7 @@
 'use strict';
 
 define(function (require, exports, module) {
-    const React = require('react');
-    const e = React.createElement;
+    const BaseComponent = require('components/base');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
     const Arrangement = require('components/arrangement');
@@ -10,7 +9,7 @@ define(function (require, exports, module) {
     const LoadingScreen = require('components/loading-screen');
     const Title = require('components/title');
 
-    class App extends React.Component {
+    class App extends BaseComponent {
         constructor(props) {
             super(props);
 
@@ -70,7 +69,7 @@ define(function (require, exports, module) {
 
         selectArrangement(index) {
             const arrangement = this.state.arrangements[index]
-            this.setState({
+            this.setStateIfComponentIsMounted({
                 currentArrangement: arrangement,
             });
             window.history.replaceState({}, '', arrangement);
@@ -108,7 +107,7 @@ define(function (require, exports, module) {
                         throw `Error getting result from API\n(fetching ${url})`;
                     }
                     result.json().then((data) => {
-                        this.setState({
+                        this.setStateIfComponentIsMounted({
                             hasLoaded: true,
                             arrangements: data,
                             error: null,
@@ -116,13 +115,14 @@ define(function (require, exports, module) {
                         this.selectArrangementIfCurrentNullOrDeleted();
                     });
                 })
-                .catch((error) => this.setState({
+                .catch((error) => this.setStateIfComponentIsMounted({
                     hasLoaded: true,
                     error
                 }));
         }
 
         componentDidMount() {
+            super.componentDidMount();
             this.loadArrangements();
             setInterval(() => this.loadArrangements(), this.props.config.reloadArrangementsInterval);
         }

@@ -1,15 +1,15 @@
 'use strict';
 
 define(function (require, exports, module) {
-    const React = require('react');
-    const e = React.createElement;
+    const BaseComponent = require('components/base');
 
-    class ErrorMessage extends React.Component {
+    class ErrorMessage extends BaseComponent {
         constructor(props) {
             super(props);
         }
 
         componentDidMount() {
+            super.componentDidMount();
             console.error(this.props.message);
         }
 

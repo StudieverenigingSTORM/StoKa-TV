@@ -6,7 +6,9 @@ define(function (require, exports, module) {
 
     const React = require('react');
     const ReactDom = require('react-dom');
-    const e = React.createElement;
+
+    // expose e globally
+    window.e = React.createElement;
 
     const App = require('components/app');
 

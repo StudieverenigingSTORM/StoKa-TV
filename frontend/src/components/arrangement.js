@@ -1,13 +1,11 @@
 'use strict';
 
 define(function (require, exports, module) {
-    const React = require('react');
-    const e = React.createElement;
-
+    const BaseComponent = require('components/base');
     const ErrorMessage = require('components/error-message');
     const LoadingScreen = require('components/loading-screen');
 
-    class Arrangement extends React.Component {
+    class Arrangement extends BaseComponent {
         constructor(props) {
             super(props);
 
@@ -19,6 +17,7 @@ define(function (require, exports, module) {
         }
 
         componentDidMount() {
+            super.componentDidMount();
             this.loadArrangment();
         }
 
@@ -36,14 +35,14 @@ define(function (require, exports, module) {
                         throw `Error getting result from API\n(fetching ${url})`;
                     }
                     result.json().then((data) => {
-                        this.setState({
+                        this.setStateIfComponentIsMounted({
                             hasLoaded: true,
                             arrangement: data,
                             error: null,
                         });
                     });
                 })
-                .catch((error) => this.setState({
+                .catch((error) => this.setStateIfComponentIsMounted({
                     hasLoaded: true,
                     error
                 }));
