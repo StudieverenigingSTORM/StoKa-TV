@@ -13,26 +13,12 @@ define(function (require, exports, module) {
         constructor(props) {
             super(props);
 
-            this.setupKeyListeners(window.document);
-
             this.state = {
                 error: null,
                 hasLoaded: false,
                 arrangements: [],
-                currentArrangement: window.location.pathname.substring(1),
+                currentArrangement: props.initialArrangement,
             }
-        }
-
-        setupKeyListeners(eventTarget) {
-            const app = this;
-            eventTarget.addEventListener('keyup', function (event) {
-                if (event.key == 'ArrowRight') {
-                    app.selectNextArrangement();
-                }
-                else if (event.key == 'ArrowLeft') {
-                    app.selectPreviousArrangement();
-                }
-            });
         }
 
         getCurrentArrangementIndex() {
@@ -71,8 +57,7 @@ define(function (require, exports, module) {
             const arrangement = this.state.arrangements[index]
             this.setStateIfComponentIsMounted({
                 currentArrangement: arrangement,
-            });
-            window.history.replaceState({}, '', arrangement);
+            }, () => this.props.onSelectArrangement(arrangement));
         }
 
         selectNextArrangement() {
@@ -151,6 +136,7 @@ define(function (require, exports, module) {
                         key: 'title',
                         apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
+                        timeout: this.props.config.titleTimeout
                     },
                 )
                 activeElement = e('div', null, [
