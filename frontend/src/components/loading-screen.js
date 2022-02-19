@@ -9,7 +9,7 @@ define(function (require, exports, module) {
         }
 
         render() {
-            return e('h1', null, 'Loading...');
+            return e('div', { className: 'loading-screen' }, e('div'));
         }
     }
 
