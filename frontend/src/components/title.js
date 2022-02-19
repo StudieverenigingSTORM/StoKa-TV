@@ -3,9 +3,7 @@
 define(function (require, exports, module) {
     const React = require('react');
     const e = React.createElement;
-    const ReactCSSTransitionGroup = require('react-transition-group');
-    const TransitionGroup = ReactCSSTransitionGroup.TransitionGroup;
-    const CSSTransition = ReactCSSTransitionGroup.CSSTransition;
+    const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
     const ErrorMessage = require('components/error-message');
 
@@ -77,12 +75,15 @@ define(function (require, exports, module) {
                 timeout: 300,
                 classNames: 'title',
             }, children);
-            let activeElement = transition('loading', e('span', null));
+            let activeElement = null;
             if (error) {
                 activeElement = transition('error', e(ErrorMessage, { message: error }));
             }
             else if (hasLoaded && !isHidden) {
                 activeElement = transition(title, e('h1', null, title));
+            }
+            else {
+                activeElement = transition('loading', e('span', null))
             }
             return e(TransitionGroup, null, activeElement);
         }

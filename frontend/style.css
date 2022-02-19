@@ -18,6 +18,30 @@ body {
     background-color: red !important;
 }
 
+/* ===== Content ===== */
+[class*="content-"] {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+.content-enter {
+    opacity: 0;
+}
+.content-enter-active {
+    opacity: 1;
+    transition: opacity 300ms linear;
+}
+.content-exit {
+    opacity: 1;
+}
+.content-exit-active {
+    opacity: 0;
+    transition: opacity 300ms linear;
+}
+.content-exit-done {
+    opacity: 0;
+}
+
 /* ===== Title ===== */
 [class*="title-"] {
     width: 100%;

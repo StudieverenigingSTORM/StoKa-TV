@@ -3,6 +3,7 @@
 define(function (require, exports, module) {
     const React = require('react');
     const e = React.createElement;
+    const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
     const Arrangement = require('components/arrangement');
     const ErrorMessage = require('components/error-message');
@@ -12,7 +13,7 @@ define(function (require, exports, module) {
     class App extends React.Component {
         constructor(props) {
             super(props);
-            
+
             this.setupKeyListeners(window.document);
 
             this.state = {
@@ -25,11 +26,11 @@ define(function (require, exports, module) {
 
         setupKeyListeners(eventTarget) {
             const app = this;
-            eventTarget.addEventListener('keyup', function(event){
-                if(event.key == 'ArrowRight') {
+            eventTarget.addEventListener('keyup', function (event) {
+                if (event.key == 'ArrowRight') {
                     app.selectNextArrangement();
                 }
-                else if(event.key == 'ArrowLeft') {
+                else if (event.key == 'ArrowLeft') {
                     app.selectPreviousArrangement();
                 }
             });
@@ -38,11 +39,11 @@ define(function (require, exports, module) {
         getCurrentArrangementIndex() {
             const arrangements = this.state.arrangements;
             const currentArrangement = this.state.currentArrangement;
-            if(arrangements.length == 0) {
+            if (arrangements.length == 0) {
                 return null;
             }
             let index = arrangements.indexOf(currentArrangement);
-            if(index == -1) {
+            if (index == -1) {
                 index = 0;
             }
             return index;
@@ -51,13 +52,13 @@ define(function (require, exports, module) {
         selectArrangementIfCurrentNullOrDeleted() {
             const arrangements = this.state.arrangements;
             const currentArrangement = this.state.currentArrangement;
-            if(arrangements.indexOf(currentArrangement) == -1) {
+            if (arrangements.indexOf(currentArrangement) == -1) {
                 this.selectArrangement(0);
             }
         }
 
         selectArrangementByKey(key) {
-            if(arrangements == null) {
+            if (arrangements == null) {
                 return
             }
             // TODO implement
@@ -77,11 +78,11 @@ define(function (require, exports, module) {
 
         selectNextArrangement() {
             const arrangements = this.state.arrangements
-            if(arrangements == null) {
+            if (arrangements == null) {
                 return
             }
             let index = this.getCurrentArrangementIndex();
-            if(index != null) {
+            if (index != null) {
                 index = (index + 1) % arrangements.length;
                 this.selectArrangement(index)
             }
@@ -89,11 +90,11 @@ define(function (require, exports, module) {
 
         selectPreviousArrangement() {
             const arrangements = this.state.arrangements
-            if(arrangements == null) {
+            if (arrangements == null) {
                 return
             }
             let index = this.getCurrentArrangementIndex();
-            if(index != null) {
+            if (index != null) {
                 index = (index - 1 + arrangements.length) % arrangements.length;
                 this.selectArrangement(index)
             }
@@ -128,10 +129,14 @@ define(function (require, exports, module) {
 
         render() {
             const { error, hasLoaded, currentArrangement } = this.state;
+            let key = null;
+            let activeElement = null;
             if (error) {
-                return e(ErrorMessage, { message: error });
+                key = 'error';
+                activeElement = e(ErrorMessage, { message: error });
             }
             else if (hasLoaded && currentArrangement != null) {
+                key = `arrangement-${currentArrangement}`;
                 const arrangement = e(
                     Arrangement,
                     {
@@ -148,14 +153,22 @@ define(function (require, exports, module) {
                         arrangement: currentArrangement,
                     },
                 )
-                return e('div', null, [
+                activeElement = e('div', null, [
                     arrangement,
                     title,
                 ]);
             }
             else {
-                return e(LoadingScreen);
+                key = 'loading';
+                activeElement = e(LoadingScreen);
             }
+            return e(TransitionGroup, null, e(CSSTransition, {
+                key: key,
+                in: true,
+                appear: true,
+                timeout: 300,
+                classNames: 'content',
+            }, activeElement));
         }
     }
 
