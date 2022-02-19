@@ -16,6 +16,9 @@ define(function (require, exports, module) {
                 else if (event.key == 'ArrowLeft') {
                     app.selectPreviousArrangement();
                 }
+                else if (event.key == 'h') {
+                    app.toggleHelp();
+                }
             });
         },
     };

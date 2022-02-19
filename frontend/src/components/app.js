@@ -8,6 +8,7 @@ define(function (require, exports, module) {
     const ErrorMessage = require('components/error-message');
     const LoadingScreen = require('components/loading-screen');
     const Title = require('components/title');
+    const Help = require('components/help');
 
     class App extends BaseComponent {
         constructor(props) {
@@ -18,6 +19,7 @@ define(function (require, exports, module) {
                 hasLoaded: false,
                 arrangements: [],
                 currentArrangement: props.initialArrangement,
+                showHelp: false,
             }
         }
 
@@ -38,6 +40,11 @@ define(function (require, exports, module) {
             const arrangements = this.state.arrangements;
             const currentArrangement = this.state.currentArrangement;
             if (arrangements.indexOf(currentArrangement) == -1) {
+                if(currentArrangement.startsWith('.')) {
+                    // Hidden arrangement!
+                    // Do not skip (the user knows what they are doing)
+                    return;
+                }
                 this.selectArrangement(0);
             }
         }
@@ -112,6 +119,12 @@ define(function (require, exports, module) {
             setInterval(() => this.loadArrangements(), this.props.config.reloadArrangementsInterval);
         }
 
+        toggleHelp() {
+            this.setStateIfComponentIsMounted({
+                showHelp: !this.state.showHelp
+            });
+        }
+
         render() {
             const { error, hasLoaded, currentArrangement } = this.state;
             let key = null;
@@ -151,13 +164,16 @@ define(function (require, exports, module) {
                 key = 'loading';
                 activeElement = e(LoadingScreen);
             }
-            return e(TransitionGroup, null, e(CSSTransition, {
-                key: key,
-                in: true,
-                appear: true,
-                timeout: transitionTime,
-                classNames: 'app-content',
-            }, activeElement));
+            return e('div', null, [
+                e(TransitionGroup, { key: 'app-content' }, e(CSSTransition, {
+                    key: key,
+                    in: true,
+                    appear: true,
+                    timeout: transitionTime,
+                    classNames: 'app-content',
+                }, activeElement)),
+                e('div', { key: 'help' }, this.state.showHelp ? e(Help) : null),
+            ]);
         }
     }
 

@@ -76,3 +76,10 @@ Place an image with the name `borrel-menu` into the root of the content director
 
 To get started, copy `/media.example/` to `/media/`.  
 (⚠ The example content is not licensed under the same license as the code.)
+
+## Controls
+| Function | App | Web browser |
+|---|---|---|
+| Next arrangement | TBD | Arrow Right |
+| Previous arrangement | TBD | Arrow Left |
+| Toggle help pop-up | TBD | h |
