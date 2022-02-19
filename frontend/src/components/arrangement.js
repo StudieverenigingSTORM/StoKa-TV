@@ -2,6 +2,7 @@
 
 define(function (require, exports, module) {
     const BaseComponent = require('components/base');
+    const { TransitionGroup, CSSTransition } = require('react-transition-group');
     const ErrorMessage = require('components/error-message');
     const LoadingScreen = require('components/loading-screen');
 
@@ -19,7 +20,7 @@ define(function (require, exports, module) {
 
         componentDidMount() {
             super.componentDidMount();
-            this.loadArrangment();
+            this.loadArrangement();
         }
 
         shouldComponentUpdate(nextProps, nextState) {
@@ -37,15 +38,15 @@ define(function (require, exports, module) {
             setTimeout(() => {
                 index++;
                 if(index >= items.length) {
-                    this.loadArrangment();
+                    this.loadArrangement();
                 }
                 else {
                     this.setStateIfComponentIsMounted({ itemIndex: index });
                 }
-            }, items[index].duration * 1000);
+            }, Math.max(0, items[index].duration * 1000 - 2 * this.props.transitionTime));
         }
 
-        loadArrangment() {
+        loadArrangement() {
             const url = `${this.props.apiBaseUrl}/arrangements/${this.props.arrangement}`;
             return fetch(url)
                 .then((result) => {
@@ -56,7 +57,7 @@ define(function (require, exports, module) {
                         if (data.items.length < 1) {
                             this.setStateIfComponentIsMounted({
                                 hasLoaded: true,
-                                error: 'Empty arrangment',
+                                error: 'Empty arrangement',
                             });
                         } else {
                             this.setStateIfComponentIsMounted({
@@ -74,11 +75,12 @@ define(function (require, exports, module) {
                 }));
         }
 
-        renderCurrentItem() {
+        getCurrentItem() {
             const baseUrl = `${this.props.apiBaseUrl}/arrangements/${this.props.arrangement}/`
             const index = this.state.itemIndex;
             const item = this.state.arrangement.items[index];
             let activeElement = null;
+            let key = `item-${ index }`;
             const contentProps = { src: baseUrl + item.file };
             const videoProps = { muted: true, autoPlay: true, loop: true };
             if(item.type == 'image') {
@@ -90,20 +92,31 @@ define(function (require, exports, module) {
             else {
                 activeElement = e(ErrorMessage, { message: `Invalid item type at index ${ index }` });
             }
-            return activeElement;
+            return [activeElement, key];
         }
 
         render() {
+            let activeElement = null;
+            let key = null;
             const { error, hasLoaded } = this.state;
             if (error) {
-                return e(ErrorMessage, { message: error });
+                key = 'error';
+                activeElement = e(ErrorMessage, { message: error });
             }
             else if (hasLoaded) {
-                return this.renderCurrentItem();
+                [activeElement, key] = this.getCurrentItem();
             }
             else {
-                return e(LoadingScreen);
+                key = 'loading';
+                activeElement = e(LoadingScreen);
             }
+            return e(TransitionGroup, null, e(CSSTransition, {
+                key: key,
+                in: true,
+                appear: true,
+                timeout: this.props.transitionTime,
+                classNames: 'arrangement-content',
+            }, activeElement));
         }
     }
 

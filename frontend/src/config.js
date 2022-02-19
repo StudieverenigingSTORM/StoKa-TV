@@ -6,5 +6,6 @@ define(function (require, exports, module) {
         apiBaseUrl: '/api',
         titleTimeout: 3000,
         reloadArrangementsInterval: 5000,
+        transitionTime: 300 /* CSS transition time */, 
     };
 });

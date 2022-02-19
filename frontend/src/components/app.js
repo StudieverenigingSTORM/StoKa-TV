@@ -49,7 +49,7 @@ define(function (require, exports, module) {
             // TODO implement
             // Search through arrangements for a name matching key
             // Compute the index
-            // Select this arrangment
+            // Select this arrangement
             console.error(Error('not implemented'));
         }
 
@@ -116,6 +116,7 @@ define(function (require, exports, module) {
             const { error, hasLoaded, currentArrangement } = this.state;
             let key = null;
             let activeElement = null;
+            const transitionTime = this.props.config.transitionTime
             if (error) {
                 key = 'error';
                 activeElement = e(ErrorMessage, { message: error });
@@ -128,6 +129,7 @@ define(function (require, exports, module) {
                         key: 'arrangement',
                         apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
+                        transitionTime,
                     }
                 );
                 const title = e(
@@ -136,7 +138,8 @@ define(function (require, exports, module) {
                         key: 'title',
                         apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
-                        timeout: this.props.config.titleTimeout
+                        timeout: this.props.config.titleTimeout,
+                        transitionTime,
                     },
                 )
                 activeElement = e('div', null, [
@@ -152,8 +155,8 @@ define(function (require, exports, module) {
                 key: key,
                 in: true,
                 appear: true,
-                timeout: 300,
-                classNames: 'content',
+                timeout: transitionTime,
+                classNames: 'app-content',
             }, activeElement));
         }
     }

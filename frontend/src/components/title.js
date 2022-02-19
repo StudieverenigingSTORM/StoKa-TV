@@ -72,7 +72,7 @@ define(function (require, exports, module) {
                 key: key,
                 in: !isHidden,
                 appear: true,
-                timeout: 300,
+                timeout: this.props.transitionTime,
                 classNames: 'title',
             }, children);
             let activeElement = null;
