@@ -71,9 +71,8 @@ define(function (require, exports, module) {
             const transition = (key, children) => e(CSSTransition, {
                 key: key,
                 in: !isHidden,
-                appear: true,
                 timeout: this.props.transitionTime,
-                classNames: 'card title',
+                classNames: 'card title fade',
             }, children);
             let activeElement = null;
             if (error) {

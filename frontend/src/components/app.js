@@ -1,7 +1,8 @@
 'use strict';
 
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     const BaseComponent = require('components/base');
+    const React = require('react');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
     const Arrangement = require('components/arrangement');
@@ -14,12 +15,13 @@ define(function (require, exports, module) {
         constructor(props) {
             super(props);
 
+            this.refHelp = React.createRef();
+
             this.state = {
                 error: null,
                 hasLoaded: false,
                 arrangements: [],
-                currentArrangement: props.initialArrangement,
-                showHelp: false,
+                currentArrangement: props.initialArrangement
             }
         }
 
@@ -40,7 +42,7 @@ define(function (require, exports, module) {
             const arrangements = this.state.arrangements;
             const currentArrangement = this.state.currentArrangement;
             if (arrangements.indexOf(currentArrangement) == -1) {
-                if(currentArrangement.startsWith('.')) {
+                if (currentArrangement.startsWith('.')) {
                     // Hidden arrangement
                     // Do not skip! (The user knows what they are doing)
                     return;
@@ -120,9 +122,14 @@ define(function (require, exports, module) {
         }
 
         toggleHelp() {
-            this.setStateIfComponentIsMounted({
-                showHelp: !this.state.showHelp
-            });
+            const help = this.refHelp.current;
+            if (help != null) {
+                if (help.isHidden()) {
+                    help.show();
+                } else {
+                    help.hide();
+                }
+            }
         }
 
         render() {
@@ -133,12 +140,10 @@ define(function (require, exports, module) {
             if (error) {
                 key = 'error';
                 activeElement = e(ErrorMessage, { message: error });
-            }
-            else if (hasLoaded && currentArrangement != null) {
+            } else if (hasLoaded && currentArrangement != null) {
                 key = `arrangement-${currentArrangement}`;
                 const arrangement = e(
-                    Arrangement,
-                    {
+                    Arrangement, {
                         key: 'arrangement',
                         apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
@@ -146,8 +151,7 @@ define(function (require, exports, module) {
                     }
                 );
                 const title = e(
-                    Title,
-                    {
+                    Title, {
                         key: 'title',
                         apiBaseUrl: this.props.config.apiBaseUrl,
                         arrangement: currentArrangement,
@@ -159,8 +163,7 @@ define(function (require, exports, module) {
                     arrangement,
                     title,
                 ]);
-            }
-            else {
+            } else {
                 key = 'loading';
                 activeElement = e(LoadingScreen);
             }
@@ -168,11 +171,15 @@ define(function (require, exports, module) {
                 e(TransitionGroup, { key: 'app-content' }, e(CSSTransition, {
                     key: key,
                     in: true,
-                    appear: true,
                     timeout: transitionTime,
-                    classNames: 'app-content',
+                    classNames: 'app fade',
                 }, activeElement)),
-                e('div', { key: 'help' }, this.state.showHelp ? e(Help) : null),
+                e(Help, {
+                    key: 'help',
+                    ref: this.refHelp,
+                    showInitially: false,
+                    transitionTime: transitionTime,
+                }),
             ]);
         }
     }

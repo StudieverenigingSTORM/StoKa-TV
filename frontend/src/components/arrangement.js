@@ -113,9 +113,8 @@ define(function (require, exports, module) {
             return e(TransitionGroup, null, e(CSSTransition, {
                 key: key,
                 in: true,
-                appear: true,
                 timeout: this.props.transitionTime,
-                classNames: 'arrangement-content',
+                classNames: 'arrangement fade',
             }, activeElement));
         }
     }

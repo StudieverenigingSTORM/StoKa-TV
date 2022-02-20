@@ -1,6 +1,5 @@
 :root {
     --shadow: #0a0b10;
-
     /* Color palette: Arctic (https://www.color-hex.com/color-palette/50396) */
     --primary: #010c30;
     --primary-200: #333c59;
@@ -21,11 +20,69 @@ body {
     margin: 0px;
     top: 30px;
     left: 30px;
-    padding: 10px;
+    padding: 25px;
+}
+
+.help h1 {
+    margin: 0px;
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-screen div {
+    margin: 0px;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    top: calc(50% - 24px);
+    border-radius: 50%;
+    border: 5px solid;
+    border-top-color: transparent;
+    color: val(--primary);
+    animation: rotate 1s linear infinite;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 var(--shadow);
+    color: var(--secondary);
+    background: linear-gradient(45deg, var(--primary), var(--primary-200));
+}
+
+.app {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.arrangement {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    width: calc(100% - 600px);
+    margin-left: 300px;
+    margin-right: 300px;
+    text-align: center;
+    line-height: 80px;
+    position: fixed;
+    bottom: 100px;
 }
 
 
-/* ===== Loading screen ===== */
+/* ===== Animations ===== */
+
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -34,105 +91,28 @@ body {
         transform: rotate(360deg);
     }
 }
-.loading-screen {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-}
-.loading-screen div {
-    margin: 0px;
-    height: 48px;
-    width: 48px;
-    position: absolute;
-    top: 50%;
-    border-radius: 50%;
-    border: 5px solid;
-    border-top-color: transparent;
-    transform: translate(0, -50%);
-    color: val(--primary);
-    animation: rotate 1s linear infinite;
-}
 
-.card {  
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 var(--shadow);
-    color: var(--secondary);
-    background: linear-gradient(45deg, var(--primary), var(--primary-200));
-}
 
-/* ===== Content ===== */
-[class*="app-content-"] {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-}
-.app-content-enter {
-    opacity: 0;
-}
-.app-content-enter-active {
-    opacity: 1;
-    transition: opacity 300ms linear;
-}
-.app-content-exit {
-    opacity: 1;
-}
-.app-content-exit-active {
-    opacity: 0;
-    transition: opacity 300ms linear;
-}
-.app-content-exit-done {
+/* ===== Transitions ===== */
+
+.fade-enter {
     opacity: 0;
 }
 
-[class*="arrangement-content-"] {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.arrangement-content-enter {
-    opacity: 0;
-}
-.arrangement-content-enter-active {
+.fade-enter-active {
     opacity: 1;
     transition: opacity 300ms linear;
-}
-.arrangement-content-exit {
-    opacity: 1;
-}
-.arrangement-content-exit-active {
-    opacity: 0;
-    transition: opacity 300ms linear;
-}
-.arrangement-content-exit-done {
-    opacity: 0;
 }
 
-/* ===== Title ===== */
-[class*="title-"] {
-    width: calc(100% - 400px);
-    margin-left: 200px;
-    margin-right: 200px;
-    text-align: center;
-    line-height: 80px;
-    position: fixed;
-    bottom: 100px;
-}
-.title-enter {
-    opacity: 0;
-}
-.title-enter-active {
-    opacity: 1;
-    transition: opacity 300ms linear;
-}
-.title-exit {
+.fade-exit {
     opacity: 1;
 }
-.title-exit-active {
+
+.fade-exit-active {
     opacity: 0;
     transition: opacity 300ms linear;
 }
-.title-exit-done {
+
+.fade-exit-done {
     opacity: 0;
 }
