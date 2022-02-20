@@ -14,7 +14,8 @@ define(function (require, exports, module) {
         }
 
         render() {
-            return e('h1', { className: 'error-message' }, 'Error!');
+            const style = { color: 'black', backgroundColor: 'red', padding: '10px' }
+            return e('h1', { style: { textAlign: 'center' } }, e('span', { style }, '\u26a0 Error!'));
         }
     }
 

@@ -13,7 +13,7 @@ define(function (require, exports, module) {
         }
 
         render() {
-            return e('h1', { className: 'help' }, '[[Help]]');
+            return e('h1', { className: 'card help' }, '[[Help]]');
         }
     }
 

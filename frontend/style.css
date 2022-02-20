@@ -1,23 +1,19 @@
 :root {
-    /* TODO Color palette */
-    --primary-1: #a31621ff; /* ruby red */
-    --secondary-1: #f9dbbdff; /* peach puff */
-    --secondary-2: #fca17dff; /* light salmon */
-    --accent-1: #0d0628ff; /* dark purple */
-    --accent-2: #646f4bff; /* dark olive green */
+    --shadow: #0a0b10;
+
+    /* Color palette: Arctic (https://www.color-hex.com/color-palette/50396) */
+    --primary: #010c30;
+    --primary-200: #333c59;
+    --secondary: #bac3e0;
+    --accent-1: #d1e1ff;
+    --accent-2: #98d4ff;
+    --accent-3: #27a8f7;
 }
 
 body {
-    margin: 0px;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    color: var(--secondary-1);
-    background-color: var(--accent-1);
-}
-
-.error-message {
-    background-color: red !important;
-    text-align: center;
-    margin: 0px;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--primary);
+    background-color: var(--secondary);
 }
 
 .help {
@@ -26,8 +22,6 @@ body {
     top: 30px;
     left: 30px;
     padding: 10px;
-    background-color: var(--primary-1);
-    box-shadow: 5px 5px 7px black;
 }
 
 
@@ -56,8 +50,15 @@ body {
     border: 5px solid;
     border-top-color: transparent;
     transform: translate(0, -50%);
-    color: val(--secondary-1);
+    color: val(--primary);
     animation: rotate 1s linear infinite;
+}
+
+.card {  
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 var(--shadow);
+    color: var(--secondary);
+    background: linear-gradient(45deg, var(--primary), var(--primary-200));
 }
 
 /* ===== Content ===== */
@@ -110,13 +111,13 @@ body {
 
 /* ===== Title ===== */
 [class*="title-"] {
-    width: 100%;
+    width: calc(100% - 400px);
+    margin-left: 200px;
+    margin-right: 200px;
     text-align: center;
-    background-color: var(--accent-2);
     line-height: 80px;
     position: fixed;
     bottom: 100px;
-    box-shadow: 0px 3px 10px black;
 }
 .title-enter {
     opacity: 0;

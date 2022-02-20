@@ -80,6 +80,6 @@ To get started, copy `/media.example/` to `/media/`.
 ## Controls
 | Function | App | Web browser |
 |---|---|---|
-| Next arrangement | TBD | Arrow Right |
-| Previous arrangement | TBD | Arrow Left |
-| Toggle help pop-up | TBD | h |
+| Next arrangement | TBD | `Arrow Right` |
+| Previous arrangement | TBD | `Arrow Left` |
+| Toggle help pop-up | TBD | `h` |

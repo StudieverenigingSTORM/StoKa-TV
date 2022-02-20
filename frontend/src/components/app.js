@@ -41,8 +41,8 @@ define(function (require, exports, module) {
             const currentArrangement = this.state.currentArrangement;
             if (arrangements.indexOf(currentArrangement) == -1) {
                 if(currentArrangement.startsWith('.')) {
-                    // Hidden arrangement!
-                    // Do not skip (the user knows what they are doing)
+                    // Hidden arrangement
+                    // Do not skip! (The user knows what they are doing)
                     return;
                 }
                 this.selectArrangement(0);

@@ -73,7 +73,7 @@ define(function (require, exports, module) {
                 in: !isHidden,
                 appear: true,
                 timeout: this.props.transitionTime,
-                classNames: 'title',
+                classNames: 'card title',
             }, children);
             let activeElement = null;
             if (error) {
