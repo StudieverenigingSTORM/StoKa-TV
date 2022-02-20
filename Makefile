@@ -7,7 +7,6 @@ error:
 
 .PHONY: containers
 containers:
-	@sh frontend/download_dependencies.sh
 	@docker compose build
 
 .PHONY: debug-containers

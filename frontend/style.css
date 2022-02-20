@@ -71,9 +71,9 @@ body {
 }
 
 .title {
-    width: calc(100% - 600px);
-    margin-left: 300px;
-    margin-right: 300px;
+    width: calc(100% - 500px);
+    margin-left: 250px;
+    margin-right: 250px;
     text-align: center;
     line-height: 80px;
     position: fixed;
