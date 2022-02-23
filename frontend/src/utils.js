@@ -1,6 +1,6 @@
 'use strict';
 
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     module.exports = {
         getCurrentArrangement: () => {
             return window.location.pathname.substring(1);
@@ -8,15 +8,15 @@ define(function (require, exports, module) {
         setCurrentArrangement: (arrangement) => {
             window.history.replaceState({}, '', arrangement)
         },
-        setupKeyListeners: (eventTarget, app) => {  
-            eventTarget.addEventListener('keyup', function (event) {
+        setupKeyListeners: (eventTarget, app) => {
+            eventTarget.addEventListener('keyup', function(event) {
                 if (event.key == 'ArrowRight') {
                     app.selectNextArrangement();
-                }
-                else if (event.key == 'ArrowLeft') {
+                } else if (event.key == 'ArrowLeft') {
                     app.selectPreviousArrangement();
-                }
-                else if (event.key == 'h') {
+                } else if (event.key == 'ArrowUp' || event.key == 'ArrowDown') {
+                    app.toggleBorrelMenu();
+                } else if (event.key == 'i') {
                     app.toggleHelp();
                 }
             });

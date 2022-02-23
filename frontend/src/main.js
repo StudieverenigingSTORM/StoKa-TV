@@ -1,6 +1,6 @@
 'use strict';
 
-define(function (require, exports, module) {
+define(function(require, exports, module) {
     const config = require('config');
     const utils = require('utils');
 

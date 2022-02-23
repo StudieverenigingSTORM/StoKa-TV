@@ -1,4 +1,4 @@
-# StoKa-TV
+# StoKa-TV 📺
 Promotional display in the StoKa.  
 (Will replace [STORMTV](https://github.com/StudieverenigingSTORM/STORMTV))
 
@@ -14,7 +14,7 @@ Concept for the deployment of the different components of the solution. (Differe
 The TV application constitutes the public part of the solution.
 It has limited interactivity.
 Content cannot be authored through this application.
-This application is also available in the browser to preview7review the content.
+This application is also available in the browser to preview/review the content.
 
 ![Flowchart TV application](./flow_tv.drawio.svg)
 
@@ -44,7 +44,7 @@ You can debug the API container using the Crome DevTools by going to `chrome://i
 To debug the API in Visual Studio Code, use the launch configuration "Debug API" after starting the container to attach the debugger. This will restart the process.
 
 ## API
-The API documentation is contained in the file `/docs/openapi.yaml` can be tested through the interactive documentation running on http://localhost:8080/docs.
+The API documentation is contained in the file `/docs/openapi.yaml` can be tested through the interactive documentation running on http://localhost:8080/docs/.
 
 ## Content
 The backend should mount a directory containing the content that should be served by the application (see `/compose.yaml`).  
@@ -80,6 +80,7 @@ To get started, copy `/media.example/` to `/media/`.
 ## Controls
 | Function | App | Web browser |
 |---|---|---|
-| Next arrangement | TBD | `Arrow Right` |
-| Previous arrangement | TBD | `Arrow Left` |
-| Toggle help pop-up | TBD | `h` |
+| Next arrangement | ◀ | `Arrow Right` |
+| Previous arrangement | ▶ | `Arrow Left` |
+| Toggle borrel menu | 🔼 | `Arrow Up` |
+| Toggle help pop-up | _i_ | `i` |

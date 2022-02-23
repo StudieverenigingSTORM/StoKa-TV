@@ -1,10 +1,10 @@
 'use strict';
 
-define(function (require, exports, module) {
-    const BaseComponent = require('components/base');
+define(function(require, exports, module) {
+    const BaseComponent = require('./base');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
-    const ErrorMessage = require('components/error-message');
-    const LoadingScreen = require('components/loading-screen');
+    const ErrorMessage = require('./error-message');
+    const LoadingScreen = require('./loading-screen');
 
     class Arrangement extends BaseComponent {
         constructor(props) {
@@ -25,11 +25,11 @@ define(function (require, exports, module) {
 
         shouldComponentUpdate(nextProps, nextState) {
             return JSON.stringify(this.props) !== JSON.stringify(nextProps) ||
-            JSON.stringify(this.state) !== JSON.stringify(nextState);
+                JSON.stringify(this.state) !== JSON.stringify(nextState);
         }
 
-        componentDidUpdate() { 
-            if(this.state.error != null || !this.state.hasLoaded) {
+        componentDidUpdate() {
+            if (this.state.error != null || !this.state.hasLoaded) {
                 return;
             }
             let index = this.state.itemIndex;
@@ -37,10 +37,9 @@ define(function (require, exports, module) {
             // Transition to next item in the arrangement
             setTimeout(() => {
                 index++;
-                if(index >= items.length) {
+                if (index >= items.length) {
                     this.loadArrangement();
-                }
-                else {
+                } else {
                     this.setStateIfComponentIsMounted({ itemIndex: index });
                 }
             }, Math.max(0, items[index].duration * 1000 - 2 * this.props.transitionTime));
@@ -83,13 +82,11 @@ define(function (require, exports, module) {
             let key = `item-${ index }`;
             const contentProps = { src: baseUrl + item.file };
             const videoProps = { muted: true, autoPlay: true, loop: true };
-            if(item.type == 'image') {
+            if (item.type == 'image') {
                 activeElement = e('img', contentProps);
-            }
-            else if(item.type == 'video') {
+            } else if (item.type == 'video') {
                 activeElement = e('video', videoProps, e('source', contentProps));
-            }
-            else {
+            } else {
                 activeElement = e(ErrorMessage, { message: `Invalid item type at index ${ index }` });
             }
             return [activeElement, key];
@@ -102,11 +99,9 @@ define(function (require, exports, module) {
             if (error) {
                 key = 'error';
                 activeElement = e(ErrorMessage, { message: error });
-            }
-            else if (hasLoaded) {
+            } else if (hasLoaded) {
                 [activeElement, key] = this.getCurrentItem();
-            }
-            else {
+            } else {
                 key = 'loading';
                 activeElement = e(LoadingScreen);
             }
@@ -114,7 +109,7 @@ define(function (require, exports, module) {
                 key: key,
                 in: true,
                 timeout: this.props.transitionTime,
-                classNames: 'arrangement fade',
+                classNames: 'fullscreen-fit fade',
             }, activeElement));
         }
     }

@@ -1,15 +1,15 @@
 'use strict';
 
 define(function(require, exports, module) {
-    const BaseComponent = require('components/base');
+    const BaseComponent = require('./base');
     const React = require('react');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
-    const Arrangement = require('components/arrangement');
-    const ErrorMessage = require('components/error-message');
-    const LoadingScreen = require('components/loading-screen');
-    const Title = require('components/title');
-    const Help = require('components/help');
+    const Arrangement = require('./arrangement');
+    const ErrorMessage = require('./error-message');
+    const LoadingScreen = require('./loading-screen');
+    const Title = require('./title');
+    const Help = require('./help');
 
     class App extends BaseComponent {
         constructor(props) {
@@ -21,7 +21,8 @@ define(function(require, exports, module) {
                 error: null,
                 hasLoaded: false,
                 arrangements: [],
-                currentArrangement: props.initialArrangement
+                currentArrangement: props.initialArrangement,
+                displayBorrelMenu: false,
             }
         }
 
@@ -132,6 +133,12 @@ define(function(require, exports, module) {
             }
         }
 
+        toggleBorrelMenu() {
+            this.setStateIfComponentIsMounted({
+                displayBorrelMenu: !this.state.displayBorrelMenu,
+            });
+        }
+
         render() {
             const { error, hasLoaded, currentArrangement } = this.state;
             let key = null;
@@ -140,6 +147,12 @@ define(function(require, exports, module) {
             if (error) {
                 key = 'error';
                 activeElement = e(ErrorMessage, { message: error });
+            } else if (this.state.displayBorrelMenu) {
+                key = 'borrel-menu';
+                activeElement = e('img', {
+                    className: "fullscreen-fit",
+                    src: `${this.props.config.apiBaseUrl}/borrel-menu`,
+                });
             } else if (hasLoaded && currentArrangement != null) {
                 key = `arrangement-${currentArrangement}`;
                 const arrangement = e(

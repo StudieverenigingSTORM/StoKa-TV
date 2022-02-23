@@ -1,7 +1,7 @@
 'use strict';
 
-define(function (require, exports, module) {
-    const BaseComponent = require('components/base');
+define(function(require, exports, module) {
+    const BaseComponent = require('./base');
 
     class LoadingScreen extends BaseComponent {
         constructor(props) {

@@ -1,7 +1,7 @@
 'use strict';
 
 define(function(require, exports, module) {
-    const BaseComponent = require('components/base');
+    const BaseComponent = require('./base');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
     class Help extends BaseComponent {
@@ -34,11 +34,16 @@ define(function(require, exports, module) {
         }
 
         render() {
-            const wideWhitespace = '\u2001';
+            const makeRow = (col1, col2, key) =>
+                e('tr', { key }, [e('td', { key: 'col-1' }, col1), e('td', { key: 'col-2' }, col2)]);
             const help = e('div', { className: 'card help' }, [
-                e('h1', { key: '0' }, 'Controls'),
-                e('p', { key: '1' }, `\u25c0${ wideWhitespace }previous`),
-                e('p', { key: '2' }, `\u25b6${ wideWhitespace }next`)
+                e('h1', { key: 'title' }, 'Controls'),
+                e('table', { key: 'table' }, e('tbody', null, [
+                    makeRow('\u25c0', 'previous', 'row-0'),
+                    makeRow('\u25b6', 'next', 'row-1'),
+                    makeRow('\u25b2', 'toggle borrel menu', 'row-2'),
+                    makeRow('\ud835\udc8a', 'toggle help', 'row-3'),
+                ]))
             ]);
             return e(TransitionGroup, null, e(CSSTransition, {
                 key: !this.state.isHidden,

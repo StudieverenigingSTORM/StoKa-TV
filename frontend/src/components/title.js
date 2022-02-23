@@ -1,10 +1,10 @@
 'use strict';
 
-define(function (require, exports, module) {
-    const BaseComponent = require('components/base');
+define(function(require, exports, module) {
+    const BaseComponent = require('./base');
     const { TransitionGroup, CSSTransition } = require('react-transition-group');
 
-    const ErrorMessage = require('components/error-message');
+    const ErrorMessage = require('./error-message');
 
     class Title extends BaseComponent {
         constructor(props) {
@@ -77,11 +77,9 @@ define(function (require, exports, module) {
             let activeElement = null;
             if (error) {
                 activeElement = transition('error', e(ErrorMessage, { message: error }));
-            }
-            else if (hasLoaded && !isHidden) {
+            } else if (hasLoaded && !isHidden) {
                 activeElement = transition(title, e('h1', null, title));
-            }
-            else {
+            } else {
                 activeElement = transition('loading', e('span', null))
             }
             return e(TransitionGroup, null, activeElement);
