@@ -51,7 +51,7 @@ The backend should mount a directory containing the content that should be serve
 Content can be synchronized to this directory from cloud storage using [rclone](https://rclone.org/).
 
 Each subdirectory within this directory is treated as an arrangement that can be played in the application.
-Directories starting with `.` are "hidden" (e.g. for review) and are not listed in the API, but can still be accessed if the name of the directory is known.
+Directories starting with `.` are "hidden" (e.g. for review) and are not listed in the API, but can still be accessed if the name of the directory is known. Prefix the name of the directory with a digit followed by an underscore to map it to the corresponding button on the remote (e.g. `1_first-arrangement, 2_second-arrangement, ...`).
 
 By default, all JPEG, PNG and MP4 files are played in alphabetical order.
 An explicit order can be defined by creating `arrangement.yaml` in this directory which defines the title of the arrangement and the order and duration of the content.  
@@ -84,3 +84,4 @@ To get started, copy `/media.example/` to `/media/`.
 | Previous arrangement | ▶ | `Arrow Left` |
 | Toggle borrel menu | 🔼 | `Arrow Up` |
 | Toggle help pop-up | _i_ | `i` |
+| Select arrangment | 0-9 | `0`-`9` |

@@ -38,6 +38,7 @@ define(function(require, exports, module) {
             setTimeout(() => {
                 index++;
                 if (index >= items.length) {
+                    // Reload and restart
                     this.loadArrangement();
                 } else {
                     this.setStateIfComponentIsMounted({ itemIndex: index });

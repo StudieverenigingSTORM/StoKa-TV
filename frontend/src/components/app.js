@@ -10,12 +10,14 @@ define(function(require, exports, module) {
     const LoadingScreen = require('./loading-screen');
     const Title = require('./title');
     const Help = require('./help');
+    const NotFound = require('./not-found');
 
     class App extends BaseComponent {
         constructor(props) {
             super(props);
 
             this.refHelp = React.createRef();
+            this.refNotFound = React.createRef();
 
             this.state = {
                 error: null,
@@ -23,6 +25,7 @@ define(function(require, exports, module) {
                 arrangements: [],
                 currentArrangement: props.initialArrangement,
                 displayBorrelMenu: false,
+                returnToArrangment: null
             }
         }
 
@@ -53,14 +56,22 @@ define(function(require, exports, module) {
         }
 
         selectArrangementByKey(key) {
+            const arrangements = this.state.arrangements;
             if (arrangements == null) {
                 return
             }
-            // TODO implement
-            // Search through arrangements for a name matching key
-            // Compute the index
-            // Select this arrangement
-            console.error(Error('not implemented'));
+            let index = -1;
+            for (let i = 0; i < arrangements.length; i++) {
+                if (arrangements[i].startsWith(`${key}_`)) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) {
+                this.refNotFound.current.show(this.props.config.notFoundTimeout);
+            } else {
+                this.selectArrangement(index);
+            }
         }
 
         selectArrangement(index) {
@@ -191,6 +202,11 @@ define(function(require, exports, module) {
                     key: 'help',
                     ref: this.refHelp,
                     showInitially: false,
+                    transitionTime: transitionTime,
+                }),
+                e(NotFound, {
+                    key: 'not-found',
+                    ref: this.refNotFound,
                     transitionTime: transitionTime,
                 }),
             ]);

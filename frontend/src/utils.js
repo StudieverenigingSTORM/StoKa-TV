@@ -18,6 +18,8 @@ define(function(require, exports, module) {
                     app.toggleBorrelMenu();
                 } else if (event.key == 'i') {
                     app.toggleHelp();
+                } else if (event.key >= '0' && event.key <= '9') {
+                    app.selectArrangementByKey(event.key);
                 }
             });
         },
