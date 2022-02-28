@@ -8,14 +8,14 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
 
 # Download dependencies source files
-COPY ./download_dependencies.sh .
-RUN sh download_dependencies.sh
+COPY ./download-dependencies.sh .
+RUN sh download-dependencies.sh
 
 # Copy source files
 COPY . .
 
 # Remove non-web files
-RUN rm nginx.conf download_dependencies.sh
+RUN rm nginx.conf download-dependencies.sh
 
 # Run static http server as foreground process
 EXPOSE 80

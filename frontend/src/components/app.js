@@ -45,7 +45,7 @@ define(function(require, exports, module) {
         selectArrangementIfCurrentNullOrDeleted() {
             const arrangements = this.state.arrangements;
             const currentArrangement = this.state.currentArrangement;
-            if (arrangements.indexOf(currentArrangement) == -1) {
+            if (arrangements.length > 0 && arrangements.indexOf(currentArrangement) == -1) {
                 if (currentArrangement.startsWith('.')) {
                     // Hidden arrangement
                     // Do not skip! (The user knows what they are doing)
@@ -116,7 +116,7 @@ define(function(require, exports, module) {
                         this.setStateIfComponentIsMounted({
                             hasLoaded: true,
                             arrangements: data,
-                            error: null,
+                            error: data.length > 0 ? null : new Error('No arrangements'),
                         });
                         this.selectArrangementIfCurrentNullOrDeleted();
                     });
