@@ -25,4 +25,5 @@ define(function(require, exports, module) {
     ReactDom.render(app, domContainer);
     // Has to be called after the render function or current will be null
     utils.setupKeyListeners(window, appRef.current);
+    window.app = appRef.current;
 });

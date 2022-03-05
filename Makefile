@@ -17,3 +17,7 @@ debug-containers: export NODE_ENV=development
 debug-containers: export MEDIA_VOL=./media
 debug-containers:containers
 	@docker-compose up --abort-on-container-exit
+
+.PHONY: app
+app:
+	@bash app/build.sh

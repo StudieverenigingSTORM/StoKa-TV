@@ -163,6 +163,7 @@ define(function(require, exports, module) {
                 activeElement = e('img', {
                     className: "fullscreen-fit",
                     src: `${this.props.config.apiBaseUrl}/borrel-menu`,
+                    onError: (error) => this.setStateIfComponentIsMounted({ error })
                 });
             } else if (hasLoaded && currentArrangement != null) {
                 key = `arrangement-${currentArrangement}`;

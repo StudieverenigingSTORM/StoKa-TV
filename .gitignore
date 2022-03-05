@@ -1,10 +1,24 @@
-# NodeJS
+# NodeJS backend
 **/node_modules
 **/package-lock.json
-
-# Test content
-media
 
 # Frontend dependencies
 frontend/src/require.js
 frontend/src/react*.js
+
+# App
+app/config.js
+
+# Tizen Studio
+**/.settings
+**/.sign
+
+# Tizen build output
+**/.buildResult
+*.wgt
+**/*.tmp
+app/*.xml
+!app/config.xml
+
+# Test content
+media

@@ -47,6 +47,9 @@ define(function(require, exports, module) {
         }
 
         loadArrangement() {
+            if(this.props.arrangement.trim().length == 0) {
+                return new Promise(()=>{});
+            }
             const url = `${this.props.apiBaseUrl}/arrangements/${this.props.arrangement}`;
             return fetch(url)
                 .then((result) => {

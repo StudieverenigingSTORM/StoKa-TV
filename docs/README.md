@@ -22,9 +22,10 @@ This application is also available in the browser to preview/review the content.
 ![Use-case Content Management](./use-case_cms.drawio.svg)
 
 ## Prerequisites
-+ [Bash] (https://www.gnu.org/software/bash/)
++ Linux (Do all of us a favor and use a real operating system 🙃)
++ [Bash](https://www.gnu.org/software/bash/)
 + [GNU Make](https://www.gnu.org/software/make/)
-+ [Docker](https://hub.docker.com/search?offering=community&q=&type=edition&platform=desktop%2Cserver) and [Docker Compose](https://docs.docker.com/compose/install/)
++ [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Running the web application locally
 To build and start the web application run `make debug-containers`.  

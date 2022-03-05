@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tproject xmlns="http://www.tizen.org/tproject">
+    <platforms>
+        <platform>
+            <name>tv-samsung-6.5</name>
+        </platform>
+    </platforms>
+    <package>
+        <blacklist>
+            <path value=".manifest.tmp" type="file"/>
+            <path value="StoKa-TV.wgt" type="file"/>
+            <path value="author-signature.xml" type="file"/>
+            <path value="build.sh" type="file"/>
+            <path value="config.js.example" type="file"/>
+            <path value="signature1.xml" type="file"/>
+        </blacklist>
+        <resFallback autoGen="true"/>
+    </package>
+</tproject>

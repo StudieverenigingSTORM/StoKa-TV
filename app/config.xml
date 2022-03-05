@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/StoKaTV" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="H3d8HApRLS.StoKaTV" package="H3d8HApRLS" required_version="2.3"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
+    <icon src="icon.png"/>
+    <name>StoKa-TV</name>
+    <tizen:profile name="tv-samsung"/>
+    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+	<tizen:privilege name="http://tizen.org/privilege/internet"/>
+	<tizen:privilege name='http://tizen.org/privilege/tv.inputdevice'/>
+	<tizen:allow-navigation>*</tizen:allow-navigation>
+	<tizen:content-security-policy>frame-src *; style-src 'unsafe-inline'</tizen:content-security-policy>
+</widget>
