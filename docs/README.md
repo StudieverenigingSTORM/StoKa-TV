@@ -26,6 +26,7 @@ This application is also available in the browser to preview/review the content.
 + [Bash](https://www.gnu.org/software/bash/)
 + [GNU Make](https://www.gnu.org/software/make/)
 + [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
++ ([Tizen TV Emulator](https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-emulator.html) for testing without a physical device)
 
 ## Running the web application locally
 To build and start the web application run `make debug-containers`.  
@@ -42,6 +43,14 @@ The following optimizations should be performed before deploying the web applica
 * Remove API documentation (see `/compose.yaml` and `/reverse-proxy/nginx.conf`)
 
 ⚠ Review the contents of `.env`!
+
+## Installing the application
+1. Copy `/app/config.js.example` to `/config.js/`
+2. Set frontend base url in `/app/config.js.example`
+3. Connect to the same network as the TV
+4. Run `make install-app TARGET="<IP address of TV>"`  
+(I have not yet tested this, but it should work 🙃)  
+⚠ When using the TV emulator, you should load and run the project through Tizen Studio instead.
 
 ## Debugging
 You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  
