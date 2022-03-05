@@ -3,7 +3,7 @@ Promotional display in the StoKa.
 (Will replace [STORMTV](https://github.com/StudieverenigingSTORM/STORMTV))
 
 ## General
-This document contains general documentation, such as diagrams, about this project.
+This section contains general documentation, such as diagrams, about this project.
 
 ### System overview
 Concept for the deployment of the different components of the solution. (Different deployments may be possible)
