@@ -41,6 +41,8 @@ The following optimizations should be performed before deploying the web applica
 * Enabled caching for frontend (see `/frontend/nginx.conf`)
 * Remove API documentation (see `/compose.yaml` and `/reverse-proxy/nginx.conf`)
 
+⚠ Review the contents of `.env`!
+
 ## Debugging
 You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  
 To debug the API in Visual Studio Code, use the launch configuration "Debug API" after starting the container to attach the debugger. This will restart the process.

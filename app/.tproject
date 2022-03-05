@@ -8,6 +8,7 @@
     <package>
         <blacklist>
             <path value=".manifest.tmp" type="file"/>
+            <path value="StoKaTV.wgt" type="file"/>
             <path value="StoKa-TV.wgt" type="file"/>
             <path value="author-signature.xml" type="file"/>
             <path value="build.sh" type="file"/>
