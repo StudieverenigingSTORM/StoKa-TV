@@ -3,7 +3,7 @@ Promotional display in the StoKa.
 (Will replace [STORMTV](https://github.com/StudieverenigingSTORM/STORMTV))
 
 ## General
-This document contains general documentation, such as diagrams, about this project.
+This section contains general documentation, such as diagrams, about this project.
 
 ### System overview
 Concept for the deployment of the different components of the solution. (Different deployments may be possible)
@@ -45,7 +45,7 @@ The following optimizations should be performed before deploying the web applica
 ⚠ Review the contents of `.env`!
 
 ## Installing the application
-1. Copy `/app/config.js.example` to `/config.js/`
+1. Copy `/app/config.js.example` to `/config.js`
 2. Set frontend base url in `/app/config.js.example`
 3. Connect to the same network as the TV
 4. Run `make install-app TARGET="<IP address of TV>"`  
