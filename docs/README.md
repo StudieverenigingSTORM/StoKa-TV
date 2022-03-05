@@ -46,7 +46,7 @@ The following optimizations should be performed before deploying the web applica
 
 ## Installing the application
 1. Copy `/app/config.js.example` to `/config.js`
-2. Set frontend base url in `/app/config.js.example`
+2. Set frontend base url in `/app/config.js`
 3. Connect to the same network as the TV
 4. Run `make install-app TARGET="<IP address of TV>"`  
 (I have not yet tested this, but it should work 🙃)  
