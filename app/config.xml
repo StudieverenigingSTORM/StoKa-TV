@@ -9,6 +9,7 @@
     <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
 	<tizen:privilege name="http://tizen.org/privilege/internet"/>
 	<tizen:privilege name='http://tizen.org/privilege/tv.inputdevice'/>
+	<tizen:privilege name="http://tizen.org/privilege/alarm"/>
 	<tizen:allow-navigation>*</tizen:allow-navigation>
 	<tizen:content-security-policy>frame-src *; style-src 'unsafe-inline'</tizen:content-security-policy>
 </widget>
