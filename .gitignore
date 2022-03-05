@@ -1,3 +1,7 @@
+# VSCode
+.vscode
+!.vscode/launch.json
+
 # NodeJS backend
 **/node_modules
 **/package-lock.json
