@@ -4,8 +4,6 @@ set -e
 
 cd $(dirname $(realpath $0))
 
-CONVERT="convert"
-
 rm -rf media
 mkdir media
 cd media
