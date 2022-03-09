@@ -7,6 +7,7 @@ error:
 	@echo "Use 'make app' to build the Tizen application"
 	@echo "Use 'make install-app TARGET=\"<IP address of TV>\"' to install the Tizen application"
 	@echo "Use 'make clean-app' to delete all packaged Tizen applications"
+	@echo "Use 'example-media' to generate test images"
 	@exit 1
 
 .PHONY: images
@@ -42,3 +43,7 @@ clean-app:
 
 .PHONY: clean
 clean: clean-app clean-images
+
+.PHONY: example-media
+example-media:
+	@bash generate_example_media.sh

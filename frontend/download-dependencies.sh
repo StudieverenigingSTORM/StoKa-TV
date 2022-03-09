@@ -2,9 +2,7 @@
 
 set -e
 
-SCRIPT="$(realpath $0)"
-SCRIPTPATH="$(dirname $SCRIPT)"
-cd "$SCRIPTPATH"
+cd $(dirname $(realpath $0))
 
 mkdir -p src
 cd src

@@ -17,4 +17,4 @@ if [ ! -f $APP ]; then
 fi
 
 # Install app
-sudo docker run --rm --network host --mount src="$APP_DIR",target="/app",type=bind vitalets/tizen-webos-sdk bash -c "echo \"Connecting to $TARGET...\" && sdb connect $TARGET | grep connected && tizen install -s $TARGET:26101 --name $APP -- /app"
+docker run --rm --network host --mount src="$APP_DIR",target="/app",type=bind vitalets/tizen-webos-sdk bash -c "echo \"Connecting to $TARGET...\" && sdb connect $TARGET | grep connected && tizen install -s $TARGET:26101 --name $APP -- /app"

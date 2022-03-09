@@ -27,6 +27,7 @@ This application is also available in the browser to preview/review the content.
 + [GNU Make](https://www.gnu.org/software/make/)
 + [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
 + ([Tizen TV Emulator](https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-emulator.html) for testing without a physical device)
++ ([ImageMagic](https://imagemagick.org/) to generate example media)
 
 ## Running the web application locally
 To build and start the web application run `make debug-containers`.  
@@ -77,18 +78,17 @@ Example:
 # Title of the arrangement that may be displayed
 title: "Main"
 items: # List of 
-- file: bunny.mp4
+- file: video.mp4
   # Optional duration in seconds
   duration: 10
-- file: pic1.jpg
+- file: image.jpg
   # If duration is not present, the default duration is used
   # (Video length for videos and 5 seconds for images)
 ```
 
 Place an image with the name `borrel-menu` into the root of the content directory to use as the borrel menu.
 
-To get started, copy `/media.example/` to `/media/`.  
-(⚠ The example content is not licensed under the same license as the code.)
+To get started run `make example-media`. (⚠ Requires [ImageMagic](https://imagemagick.org/) to be installed)
 
 ## Controls
 | Function | App | Web browser |

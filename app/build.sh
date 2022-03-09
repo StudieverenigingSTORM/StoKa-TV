@@ -9,4 +9,4 @@ if [ ! -f "config.js" ]; then
 fi
 
 # Build app
-sudo docker run --rm --mount src="$APP_DIR",target="/app",type=bind vitalets/tizen-webos-sdk tizen package -t wgt -- /app
+docker run --rm --mount src="$APP_DIR",target="/app",type=bind vitalets/tizen-webos-sdk tizen package -t wgt -- /app
