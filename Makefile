@@ -4,9 +4,9 @@ error:
 	@echo "Use 'make images' to build the container images for deployment"
 	@echo "Use 'make debug-containers' to build and run the development environment"
 	@echo "Use 'make clean-images' to delete the container images"
-	@echo "Use 'make app' to build the Tizen application"
-	@echo "Use 'make install-app TARGET=\"<IP address of TV>\"' to install the Tizen application"
-	@echo "Use 'make clean-app' to delete all packaged Tizen applications"
+	@echo "Use 'make tizen-app' to build the Tizen application"
+	@echo "Use 'make install-tizen-app TARGET=\"<IP address of TV>\"' to install the Tizen application"
+	@echo "Use 'make clean-tizen-app' to delete all packaged Tizen applications"
 	@echo "Use 'example-media' to generate test images"
 	@exit 1
 
@@ -27,22 +27,22 @@ debug-containers:images
 clean-images:
 	@docker images | grep -o "stoka-tv[^ ]*" | xargs docker image rm
 
-app/StoKa-TV.wgt:
-	@bash app/build.sh
+app/tizen/StoKa-TV.wgt:
+	@bash app/tizen/build.sh
 
-.PHONY: app
-app: app/StoKa-TV.wgt
+.PHONY: tizen-app
+tizen-app: app/tizen/StoKa-TV.wgt
 
-.PHONY: app
-install-app: app/StoKa-TV.wgt
-	@bash app/install.sh $(TARGET)
+.PHONY: install-tizen-app
+install-tizen-app: app/tizen/StoKa-TV.wgt
+	@bash app/tizen/install.sh $(TARGET)
 
-.PHONY: clean-app
-clean-app:
-	@ls app/ | grep "^.*\.wgt" | sed 's/^/app\//g' | xargs rm -f
+.PHONY: clean-tizen-app
+clean-tizen-app:
+	@ls app/tizen | grep "^.*\.wgt" | sed 's/^/app\/tizen\//g' | xargs rm -f
 
 .PHONY: clean
-clean: clean-app clean-images
+clean: clean-tizen-app clean-images
 
 .PHONY: example-media
 example-media:

@@ -11,7 +11,7 @@ frontend/src/require.js
 frontend/src/react*.js
 
 # App
-app/config.js
+app/tizen/config.js
 
 # Tizen Studio
 **/.settings
@@ -21,8 +21,8 @@ app/config.js
 **/.buildResult
 *.wgt
 **/*.tmp
-app/*.xml
-!app/config.xml
+app/tizen/*.xml
+!app/tizen/config.xml
 
 # Test content
 media
