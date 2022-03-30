@@ -26,6 +26,7 @@ This application is also available in the browser to preview/review the content.
 + [Bash](https://www.gnu.org/software/bash/)
 + [GNU Make](https://www.gnu.org/software/make/)
 + [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
++ ([Android SDK](https://developer.android.com/studio) to build the Android TV app)
 + ([Tizen TV Emulator](https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-emulator.html) for testing without a physical device)
 + ([ImageMagic](https://imagemagick.org/) to generate example media)
 
@@ -45,14 +46,19 @@ The following optimizations should be performed before deploying the web applica
 
 ⚠ Review the contents of `.env`!
 
-## Installing the application
-1. Copy `/app/config.js.example` to `/config.js`
-2. Set frontend base url in `/app/config.js`
+## Installing the Tizen application
+1. Copy `/app/tizen/config.js.example` to `/app/tizen/config.js`
+2. Set frontend base url in `/app/tizen/config.js`
 3. Connect to the same network as the TV
 4. Set up the TV for debugging by going to "apps", pressing "1 2 3 4 5" on the remote and enter the IP address of the host computer.
 5. Run `make install-app TARGET="<IP address of TV>"`  
 (I have not yet tested this, but it should work 🙃)  
 ⚠ When using the TV emulator, you should load and run the project through Tizen Studio instead.
+
+## Android TV
+Since Android is a superiour platform compared to Tizen, you may of course choose to target it instead.  
+Before building the `.apk` file, you should set the frontend base url in `/app/android/app/src/main/res/values/strings.xml`.  
+You can either sideload the app from the file system or set your device into developer mode and debug it from Android Studio or using the adb cli.
 
 ## Debugging
 You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  
