@@ -97,5 +97,5 @@ To get started run `make example-media`. (⚠ Requires [ImageMagic](https://imag
 | Next arrangement | ◀ | `Arrow Right` |
 | Previous arrangement | ▶ | `Arrow Left` |
 | Toggle borrel menu | 🔼 | `Arrow Up` |
-| Toggle help pop-up | _i_ | `i` |
+| Toggle help pop-up | 🔽 | `Arrow Down` |
 | Select arrangment | 0-9 | `0`-`9` |

@@ -42,7 +42,7 @@ define(function(require, exports, module) {
                     makeRow('\u25c0', 'previous', 'row-0'),
                     makeRow('\u25b6', 'next', 'row-1'),
                     makeRow('\u25b2', 'toggle borrel menu', 'row-2'),
-                    makeRow('\ud835\udc8a', 'toggle help', 'row-3'),
+                    makeRow('\u25bc', 'toggle help', 'row-3'),
                     makeRow('0-9', 'select arrangment', 'row-4'),
                 ]))
             ]);

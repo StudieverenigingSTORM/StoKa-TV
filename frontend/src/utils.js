@@ -14,9 +14,9 @@ define(function(require, exports, module) {
                     app.selectNextArrangement();
                 } else if (event.key == 'ArrowLeft') {
                     app.selectPreviousArrangement();
-                } else if (event.key == 'ArrowUp' || event.key == 'ArrowDown') {
+                } else if (event.key == 'ArrowUp') {
                     app.toggleBorrelMenu();
-                } else if (event.key == 'i') {
+                } else if (event.key == 'ArrowDown') {
                     app.toggleHelp();
                 } else if (event.key >= '0' && event.key <= '9') {
                     app.selectArrangementByKey(event.key);
