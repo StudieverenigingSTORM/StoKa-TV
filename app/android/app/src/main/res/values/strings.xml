@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">StoKa-TV</string>
-    <string name="web_app_url">http://example.org</string> <!-- TODO replace with base url of frontend  -->
+    <string name="web_app_url">https://storm.vu/</string> <!-- TODO replace with base url of frontend  -->
 </resources>
