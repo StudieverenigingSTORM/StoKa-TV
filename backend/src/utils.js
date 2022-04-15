@@ -32,5 +32,7 @@ module.exports = {
         else {
             return null;
         }
-    }
+    },
+    // Mittigate path traversal attacks
+    sanatizeFilenameInput: (filename) => filename.replace(/[/\\]/g, ''),
 }

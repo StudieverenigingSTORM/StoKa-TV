@@ -24,7 +24,7 @@ class ArrangementsRepository {
     }
 
     getArrangement(arrangement) {
-        const arrangementDir = `${this.mediaDir}/${arrangement}`
+        const arrangementDir = `${this.mediaDir}/${sanatizeFilenameInput(arrangement)}`
         const arrangementFilename = `${arrangementDir}/arrangement.yaml`;
         const doesArrangementFileExist = fs.existsSync(arrangementFilename);
         let cfg = {};
@@ -59,7 +59,7 @@ class ArrangementsRepository {
     }
 
     getMediaFiles(arrangement) {
-        const arrangementDir = `${this.mediaDir}/${arrangement}`
+        const arrangementDir = `${this.mediaDir}/${sanatizeFilenameInput(arrangement)}`
         return fs.readdirSync(arrangementDir).filter(f => utils.hasValidExtension(f));
     }
 
