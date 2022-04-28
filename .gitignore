@@ -10,9 +10,6 @@
 frontend/src/require.js
 frontend/src/react*.js
 
-# App
-app/tizen/config.js
-
 # Tizen Studio
 **/.settings
 **/.sign

@@ -47,11 +47,10 @@ The following optimizations should be performed before deploying the web applica
 ⚠ Review the contents of `.env`!
 
 ## Installing the Tizen application
-1. Copy `/app/tizen/config.js.example` to `/app/tizen/config.js`
-2. Set frontend base url in `/app/tizen/config.js`
-3. Connect to the same network as the TV
-4. Set up the TV for debugging by going to "apps", pressing "1 2 3 4 5" on the remote and enter the IP address of the host computer.
-5. Run `make install-app TARGET="<IP address of TV>"`  
+1. Set frontend base url in `/app/tizen/config.js`
+2. Connect to the same network as the TV
+3. Set up the TV for debugging by going to "apps", pressing "1 2 3 4 5" on the remote and enter the IP address of the host computer.
+4. Run `make install-app TARGET="<IP address of TV>"`  
 (I have not yet tested this, but it should work 🙃)  
 ⚠ When using the TV emulator, you should load and run the project through Tizen Studio instead.
 
