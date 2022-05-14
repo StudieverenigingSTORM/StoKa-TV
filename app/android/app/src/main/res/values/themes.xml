@@ -1,5 +1,7 @@
 <resources>
     <style name="Theme.StoKaTV" parent="@style/Theme.Leanback">
        <item name="android:windowBackground">@drawable/window_background</item>
+       <item name="android:windowNoTitle">true</item>
+       <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

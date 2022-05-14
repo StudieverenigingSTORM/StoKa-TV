@@ -9,6 +9,6 @@ define(function(require, exports, module) {
         titleTimeout: 3000,
         notFoundTimeout: 1500,
         reloadArrangementsInterval: 5000,
-        transitionTime: 300 /* CSS transition time */ ,
+        transitionTime: 800 /* CSS transition time */ ,
     };
 });
