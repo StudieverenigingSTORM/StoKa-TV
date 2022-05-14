@@ -18,6 +18,7 @@ USER node
 COPY . .
 
 
-# Run app
-EXPOSE 80
+# Run app (use port above 1024 to avoid privilege issues)
+EXPOSE 8080
+ENV PORT 8080
 CMD [ "npm", "start"]

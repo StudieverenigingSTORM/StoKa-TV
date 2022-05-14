@@ -25,7 +25,7 @@ This application is also available in the browser to preview/review the content.
 + Linux (Do all of us a favor and use a real operating system 🙃)
 + [Bash](https://www.gnu.org/software/bash/)
 + [GNU Make](https://www.gnu.org/software/make/)
-+ [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
++ [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) (...or [Podman](https://podman.io/) and [Podman Compose](https://github.com/containers/podman-compose))
 + ([Android SDK](https://developer.android.com/studio) to build the Android TV app)
 + ([Tizen TV Emulator](https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-emulator.html) for testing without a physical device)
 + ([ImageMagic](https://imagemagick.org/) to generate example media)
