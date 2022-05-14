@@ -1,6 +1,6 @@
 # StoKa-TV 📺
 Promotional display in the StoKa.  
-(Will replace [STORMTV](https://github.com/StudieverenigingSTORM/STORMTV))
+(Replaces [STORMTV](https://github.com/StudieverenigingSTORM/STORMTV))
 
 ## General
 This section contains general documentation, such as diagrams, about this project.
