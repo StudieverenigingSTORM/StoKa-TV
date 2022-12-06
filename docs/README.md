@@ -22,7 +22,6 @@ This application is also available in the browser to preview/review the content.
 ![Use-case Content Management](./use-case_cms.drawio.svg)
 
 ## Prerequisites
-+ Linux (Do all of us a favor and use a real operating system 🙃)
 + [Bash](https://www.gnu.org/software/bash/)
 + [GNU Make](https://www.gnu.org/software/make/)
 + [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) (...or [Podman](https://podman.io/) and [Podman Compose](https://github.com/containers/podman-compose))
@@ -46,7 +45,7 @@ The following optimizations should be performed before deploying the web applica
 
 ⚠ Review the contents of `.env`!
 
-## Installing the Tizen application
+## ~~Installing the Tizen application~~ (deprecated)
 1. Set frontend base url in `/app/tizen/config.js`
 2. Connect to the same network as the TV
 3. Set up the TV for debugging by going to "apps", pressing "1 2 3 4 5" on the remote and enter the IP address of the host computer.
@@ -55,9 +54,9 @@ The following optimizations should be performed before deploying the web applica
 ⚠ When using the TV emulator, you should load and run the project through Tizen Studio instead.
 
 ## Android TV
-Since Android is a superiour platform compared to Tizen, you may of course choose to target it instead.  
-Before building the `.apk` file, you should set the frontend base url in `/app/android/app/src/main/res/values/strings.xml`.  
-You can either sideload the app from the file system or set your device into developer mode and debug it from Android Studio or using the adb cli.
+Since Android is a superiour platform compared to Tizen, you may of course choose to target it instead.   
+You can either sideload the app from the file system or set your device into developer mode and debug it from Android Studio or using the adb cli.  
+The frontend base url must be configured at the first start of the app.
 
 ## Debugging
 You can debug the API container using the Crome DevTools by going to `chrome://inspect`.  
@@ -103,4 +102,5 @@ To get started run `make example-media`. (⚠ Requires [ImageMagic](https://imag
 | Previous arrangement | ▶ | `Arrow Left` |
 | Toggle borrel menu | 🔼 | `Arrow Up` |
 | Toggle help pop-up | 🔽 | `Arrow Down` |
-| Select arrangment | 0-9 | `0`-`9` |
+| Select arrangment | `0`-`9` | `0`-`9` |
+| Set base frontend url | `Menu` | n/a |

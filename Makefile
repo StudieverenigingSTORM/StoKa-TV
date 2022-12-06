@@ -7,6 +7,8 @@ error:
 	@echo "Use 'make tizen-app' to build the Tizen application"
 	@echo "Use 'make install-tizen-app TARGET=\"<IP address of TV>\"' to install the Tizen application"
 	@echo "Use 'make clean-tizen-app' to delete all packaged Tizen applications"
+	@echo "Use 'make android-app' to build the Android application"
+	@echo "Use 'make clean-android-app' to delete all packaged Android applications"
 	@echo "Use 'example-media' to generate test images"
 	@exit 1
 
@@ -41,8 +43,16 @@ install-tizen-app: app/tizen/StoKa-TV.wgt
 clean-tizen-app:
 	@ls app/tizen | grep "^.*\.wgt" | sed 's/^/app\/tizen\//g' | xargs rm -f
 
+.PHONY: android-app
+android-app:
+	@bash -c "cd app/android/ && bash gradlew assembleDebug"
+
+.PHONY: clean-android-app
+clean-android-app:
+	@bash -c "cd app/android/ && bash gradlew clean"
+
 .PHONY: clean
-clean: clean-tizen-app clean-images
+clean: clean-tizen-app clean-android-app clean-images
 
 .PHONY: example-media
 example-media:
