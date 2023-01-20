@@ -7,10 +7,8 @@ services:
     ports:
       - 9229:9229 # For debugging
     volumes:
-      - type: volume
-        source: ${MEDIA_VOL}
-        target: /srv/media
-        read_only: true # For security
+      # Mount as read only for security
+      - ${MEDIA_VOL}:/srv/media:ro
       # Mount source code to restart without rebuilding image
       # (TODO only for development)
       - ./backend:/usr/src/app
