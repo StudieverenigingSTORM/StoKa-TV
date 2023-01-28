@@ -6,8 +6,8 @@ Promotional display in the StoKa.
 This section contains general documentation, such as diagrams, about this project.
 
 ### System overview
-Concept for the deployment of the different components of the solution. (Different deployments may be possible)
-
+Concept for the deployment of the different components of the solution. (Different deployments may be possible)  
+(⚠️ Files can now be uploaded directly at `/admin` thanks to [filegator](https://filegator.io/))
 ![System overview](./system_overview.drawio.svg)
 
 ### TV application

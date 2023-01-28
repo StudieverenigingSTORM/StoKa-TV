@@ -106,7 +106,7 @@ define(function(require, exports, module) {
         }
 
         loadArrangements() {
-            const url = `${this.props.config.apiBaseUrl}/arrangements`;
+            const url = `${this.props.config.apiBaseUrl}/arrangements?nocache=${Date.now()}`;
             return fetch(url)
                 .then((result) => {
                     if (!result.ok) {

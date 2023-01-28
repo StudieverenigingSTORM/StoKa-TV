@@ -1,6 +1,18 @@
 version: '3.8'
 
+volumes:
+  media:
+
 services:
+  admin:
+    hostname: admin
+    image: filegator/filegator
+    restart: unless-stopped
+    volumes:
+      - media:/var/www/filegator/repository
+      # Persist configuration (credentials, etc.)
+      - /var/www/filegator/private
+
   backend:
     hostname: backend
     restart: unless-stopped
@@ -8,7 +20,7 @@ services:
       - 9229:9229 # For debugging
     volumes:
       # Mount as read only for security
-      - ${MEDIA_VOL}:/srv/media:ro
+      - media:/srv/media:ro
       # Mount source code to restart without rebuilding image
       # (TODO only for development)
       - ./backend:/usr/src/app
@@ -36,7 +48,8 @@ services:
     depends_on:
       - backend
       - frontend
-      - swagger-ui
+      - admin
+      # - swagger-ui
     hostname: reverse-proxy
     restart: unless-stopped
     ports:
@@ -46,10 +59,10 @@ services:
 
   # Interactive API documentation
   # (TODO only for development)
-  swagger-ui:
-    image: swaggerapi/swagger-ui
-    hostname: swagger-ui
-    volumes:
-      - ./docs:/usr/share/nginx/html/docs
-    environment:
-      API_URL: docs/openapi.yaml
+  # swagger-ui:
+  #   image: swaggerapi/swagger-ui
+  #   hostname: swagger-ui
+  #   volumes:
+  #     - ./docs:/usr/share/nginx/html/docs
+  #   environment:
+  #     API_URL: docs/openapi.yaml

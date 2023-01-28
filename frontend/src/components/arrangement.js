@@ -50,7 +50,7 @@ define(function(require, exports, module) {
             if(this.props.arrangement.trim().length == 0) {
                 return new Promise(()=>{});
             }
-            const url = `${this.props.apiBaseUrl}/arrangements/${this.props.arrangement}`;
+            const url = `${this.props.apiBaseUrl}/arrangements/${this.props.arrangement}?nocache=${Date.now()}`;
             return fetch(url)
                 .then((result) => {
                     if (!result.ok) {
