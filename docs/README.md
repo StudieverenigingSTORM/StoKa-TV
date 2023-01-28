@@ -7,7 +7,7 @@ This section contains general documentation, such as diagrams, about this projec
 
 ### System overview
 Concept for the deployment of the different components of the solution. (Different deployments may be possible)  
-(⚠️ Files can now be uploaded directly at `/admin` thanks to [filegator](https://filegator.io/))
+(⚠️ Files can now be uploaded directly at `/admin` thanks to [filegator](https://filegator.io/). The default credentials are `admin` and `admin123`)
 ![System overview](./system_overview.drawio.svg)
 
 ### TV application
