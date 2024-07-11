@@ -9,9 +9,6 @@ services:
     image: docker.io/filegator/filegator:latest
     restart: unless-stopped
     user: root
-    environment:
-      - BASE_URL='/admin'
-      - APP_PUBLIC_PATH='/admin/'
     volumes:
       - media:/var/www/filegator/repository
       - /var/www/filegator/private
