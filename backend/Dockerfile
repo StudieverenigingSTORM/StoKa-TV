@@ -1,4 +1,4 @@
-FROM node:17-alpine3.12
+FROM docker.io/node:17-alpine3.12
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,8 +8,8 @@ COPY package.json ./
 RUN npm install
 
 # Add support for debugging
-RUN npm install -g nodemon
-EXPOSE 9229
+# RUN npm install -g nodemon
+# EXPOSE 9229
 
 # Switch user
 USER node

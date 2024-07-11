@@ -6,13 +6,18 @@ volumes:
 services:
   admin:
     hostname: admin
-    image: filegator/filegator
+    image: docker.io/filegator/filegator:latest
     restart: unless-stopped
+    user: root
+    environment:
+      - BASE_URL='/admin'
+      - APP_PUBLIC_PATH='/admin/'
     volumes:
       - media:/var/www/filegator/repository
-      # Persist configuration (credentials, etc.)
       - /var/www/filegator/private
-
+      - ./configuration.php:/var/www/filegator/configuration.php
+      - ./filegator-entrypoint.sh:/var/www/filegator/entrypoint.sh
+    cmd: /var/www/filegator/entrypoint.sh
   backend:
     hostname: backend
     restart: unless-stopped
@@ -23,8 +28,8 @@ services:
       - media:/srv/media:ro
       # Mount source code to restart without rebuilding image
       # (TODO only for development)
-      - ./backend:/usr/src/app
-      - /usr/src/app/node_modules
+      #- ./backend:/usr/src/app
+      #- /usr/src/app/node_modules
     build:
       context: ./backend
     environment:
@@ -37,10 +42,9 @@ services:
       - backend
     hostname: frontend
     restart: unless-stopped
-    volumes:
       # Mount source code to restart without rebuilding image
       # (TODO only for development)
-      - ./frontend:/usr/src/app
+      #- ./frontend:/usr/src/app
     build:
       context: ./frontend
 
@@ -53,7 +57,7 @@ services:
     hostname: reverse-proxy
     restart: unless-stopped
     ports:
-      - 8080:80
+      - 8005:80
     build:
       context: ./reverse-proxy
 

@@ -1,4 +1,4 @@
-FROM nginx:stable-alpine
+FROM docker.io/nginx:stable-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
