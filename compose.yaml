@@ -12,8 +12,8 @@ services:
     volumes:
       - media:/var/www/filegator/repository
       - /var/www/filegator/private
-      - ./configuration.php:/var/www/filegator/configuration.php
-      - ./filegator-entrypoint.sh:/var/www/filegator/entrypoint.sh
+      - ./filegator/configuration.php:/var/www/filegator/configuration.php
+      - ./filegator/filegator-entrypoint.sh:/var/www/filegator/entrypoint.sh
     cmd: /var/www/filegator/entrypoint.sh
   backend:
     hostname: backend
